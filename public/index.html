@@ -249,6 +249,26 @@ button{font:inherit;cursor:pointer;border:0}
  .mfoot .best{display:none}
  .namebox input{width:130px;padding:4px 10px}
 }
+/* ---- monsters ---- */
+.obs svg{animation-delay:var(--d,0s)}
+.obs.boss svg{animation:bossIdle 1.5s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes bossIdle{0%,100%{transform:rotate(-6deg) translateY(0)}25%{transform:rotate(0) translateY(-8%) scale(1.05)}50%{transform:rotate(6deg) translateY(0)}75%{transform:rotate(0) translateY(-5%)}}
+.obs.boss.rage svg{animation-duration:.7s;filter:drop-shadow(0 0 8px #ff2b4f) saturate(1.6)}
+.obs.ember svg,.obs.frost svg{animation:stomp 1.2s ease-in-out infinite;transform-origin:50% 95%}
+@keyframes stomp{0%,100%{transform:scale(1)}20%{transform:scale(1.07,.9)}45%{transform:scale(.96,1.08) translateY(-6%) rotate(-3deg)}70%{transform:scale(1.05,.93) rotate(3deg)}}
+.obs.lizard svg{animation:lizDance .6s ease-in-out infinite alternate;transform-origin:50% 90%}
+@keyframes lizDance{from{transform:rotate(-10deg) translateY(0)}to{transform:rotate(10deg) translateY(-10%)}}
+.pc.leap svg{animation:leap .75s cubic-bezier(.35,0,.6,1) backwards!important}
+@keyframes leap{0%{transform:translateY(-480%) scale(1.7) rotate(-20deg);opacity:0}10%{opacity:1}62%{transform:translateY(0) scale(1.3,.68)}76%{transform:translateY(-12%) scale(.9,1.15)}88%{transform:scale(1.06,.95)}100%{transform:none}}
+.pc.roar svg{animation:roar .5s ease-in-out!important}
+@keyframes roar{30%{transform:scale(1.35) rotate(-6deg);filter:drop-shadow(0 0 12px #ff2b4f) brightness(1.4)}60%{transform:scale(1.3) rotate(6deg)}}
+.fxc.shadow::after{background:radial-gradient(ellipse,#000a,transparent 65%);animation:shadowIn .5s forwards;border-radius:50%}
+@keyframes shadowIn{from{transform:scale(2.4,.6);opacity:.1}to{transform:scale(1,.5) translateY(40%);opacity:1}}
+#boardWrap.alarm::after{content:"";position:absolute;inset:-6px;border-radius:18px;pointer-events:none;z-index:9;box-shadow:0 0 0 5px #ff2b4f,0 0 40px 10px #ff2b4f;animation:alarm .35s steps(2) infinite}
+@keyframes alarm{50%{opacity:.15}}
+.banner.warn{background:linear-gradient(180deg,#7a0018f0,#3a000cf0);-webkit-background-clip:border-box;background-clip:border-box;color:#fff;filter:none;font-size:calc(var(--s)*.5);padding:10px 18px;border-radius:12px;border:3px solid #ff4d6a;box-shadow:0 0 30px #ff2b4f;text-shadow:0 2px 0 #000;white-space:nowrap}
+.flyer{position:absolute;left:0;top:0;width:var(--s);height:var(--s);z-index:6;pointer-events:none;transition:transform .45s cubic-bezier(.3,-.4,.6,1)}
+.flyer svg{width:100%;height:100%;animation:spin .45s linear infinite}
 /* ---- wow layer ---- */
 #pfx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:45}
 #bgfloat{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
@@ -481,7 +501,7 @@ const OBS={
  rock:{name:'ก้อนหิน',hp:1,desc:'ทำลายลูกอมข้างๆ <em>1 ครั้ง</em> เพื่อทุบทิ้ง',pts:200},
  lizard:{name:'กิ้งก่าแสง',hp:1,desc:'ชอบพุ่ง<em>ขึ้น-ลง</em>สลับที่กับลูกอมทุกตา ทำลายลูกอมข้างๆ <em>1 ครั้ง</em> เพื่อกำจัด',pts:1000},
  ember:{name:'โกเลมเพลิง',hp:8,desc:'ทำลายลูกอมรอบๆ <em>8 ครั้ง</em> เพื่อรับ<em>พลังเพลิง 40 วิ</em>: ทุกครั้งที่เล่น จะสุ่มทำลายลูกอม 2x2',pts:2000},
- frost:{name:'โกเลมน้ำแข็ง',hp:8,desc:'ทำลายลูกอมรอบๆ <em>8 ครั้ง</em> เพื่อรับ<em>พลังปัญญา 40 วิ</em>: ทุกครั้งที่เล่น จะสุ่มอัปเกรดลูกอม 1 ตัว',pts:2000},
+ frost:{name:'โกเลมน้ำแข็ง',hp:8,desc:'ทำลายลูกอมรอบๆ <em>8 ครั้ง</em> เพื่อรับ<em>พลังปัญญา 40 วิ</em>: ทุกครั้งที่เล่น จะสุ่มอัปเกรดลูกอม Lv.1 เป็น Lv.2 1 ตัว',pts:2000},
  boss:{name:'จอมมารเงา',hp:30,desc:'ต้องทำลายลูกอมรอบๆ <em>30 ครั้ง</em> (โดนได้สูงสุด 2 ครั้งต่อรอบการแตก) ทุกครั้งที่เสียพลังชีวิต 10 หน่วยจะโกรธและใช้สกิล: <em>โยนก้อนหิน 3 ก้อน</em> หรือ<em>กลืนกินลูกอม 3x3</em>',pts:5000}
 };
 const ITEMS={
@@ -490,15 +510,22 @@ const ITEMS={
  bomb:{name:'ระเบิดพลังงาน',desc:'เลือกตำแหน่งใดก็ได้ ทำลายลูกอม <em>3x3</em>'}
 };
 const CHAPTERS=[
- {num:'I',name:'บทที่ 1 • ลานหินป่วน',base:45000,emb:'rock',obs:k=>({rock:2+k})},
- {num:'II',name:'บทที่ 2 • โกเลมเพลิงตื่น',base:50000,emb:'ember',obs:k=>({rock:1+(k>1?1:0),ember:1+(k===3?1:0)})},
- {num:'III',name:'บทที่ 3 • ทุ่งน้ำแข็งกับกิ้งก่า',base:55000,emb:'frost',obs:k=>({frost:1,lizard:1+(k>>1)+(k===3?1:0)})},
- {num:'IV',name:'บทที่ 4 • เงาจอมมาร',base:60000,emb:'boss',obs:k=>({boss:1,ember:k>=2?1:0,rock:k})},
- {num:'V',name:'บทที่ 5 • ศึกสุดท้าย',base:65000,emb:'boss',obs:k=>({boss:1,ember:1,frost:k>=1?1:0,lizard:1+(k>=2?1:0)})}
+ {num:'I',name:'บทที่ 1 • ลานหินป่วน',emb:'rock',obs:k=>({rock:1+k}),
+  waves:k=>k?[{at:25,msg:'ฝนหินถล่ม!',m:{rock:1+k}}]:[{at:30,msg:'ก้อนหินร่วงลงมา!',m:{rock:2}}]},
+ {num:'II',name:'บทที่ 2 • โกเลมเพลิงตื่น',emb:'ember',obs:k=>({rock:1+(k>1?1:0)}),
+  waves:k=>[{at:12,msg:'โกเลมเพลิงบุก!',m:{ember:1}}].concat(k>=2?[{at:38,msg:'โกเลมเพลิงตัวที่สองมาแล้ว!',m:{ember:1,rock:k}}]:[{at:40,msg:'ฝนหินถล่ม!',m:{rock:2}}])},
+ {num:'III',name:'บทที่ 3 • ทุ่งน้ำแข็งกับกิ้งก่า',emb:'frost',obs:k=>({frost:1}),
+  waves:k=>[{at:15,msg:'ฝูงกิ้งก่าแสงวิ่งเข้ามา!',m:{lizard:2+(k>>1)}}].concat(k>=1?[{at:38,msg:'โกเลมน้ำแข็งกระโดดลงมา!',m:{frost:1,lizard:k>=3?1:0}}]:[])},
+ {num:'IV',name:'บทที่ 4 • เงาจอมมาร',emb:'boss',obs:k=>({rock:1+k}),
+  waves:k=>[{at:10,msg:'⚠️ จอมมารเงาปรากฏตัว!',boss:true,m:{boss:1}}].concat(k>=1?[{at:36,msg:'จอมมารเรียกลูกสมุน!',m:{ember:k>=2?1:0,lizard:1,rock:k}}]:[])},
+ {num:'V',name:'บทที่ 5 • ศึกสุดท้าย',emb:'boss',obs:k=>({ember:1,lizard:1}),
+  waves:k=>[{at:6,msg:'⚠️ จอมมารเงาปรากฏตัว!',boss:true,m:{boss:1}},{at:28,msg:'กองทัพโกเลมบุก!',m:{frost:1,ember:k>=2?1:0,lizard:1}},{at:46,msg:'ระลอกสุดท้าย!',m:{lizard:1+(k>>1),rock:2+k}}]}
 ];
+const TARGETS=[[55000,60000,65000,70000],[65000,70000,75000,80000],[95000,100000,105000,110000],[60000,65000,70000,75000],[70000,75000,80000,85000]];
 const STAGES=[];
 CHAPTERS.forEach((ch,ci)=>{for(let k=0;k<4;k++){const o=ch.obs(k);for(const t in o)if(!o[t])delete o[t];
- STAGES.push({ch:ci,sub:k,num:ch.num,label:`${ci+1}-${k+1}`,name:`ด่านที่ ${ci+1}-${k+1}`,target:ch.base+k*5000,time:60,obs:o,chest:k===3?2:1});}});
+ const wv=ch.waves(k).map(w=>{for(const t in w.m)if(!w.m[t])delete w.m[t];return w;});
+ STAGES.push({ch:ci,sub:k,num:ch.num,label:`${ci+1}-${k+1}`,name:`ด่านที่ ${ci+1}-${k+1}`,target:TARGETS[ci][k],time:60,obs:o,waves:wv,chest:k===3?2:1});}});
 STAGES.push({ch:5,sub:0,num:'∞',label:'∞',name:'ด่านสุดท้าย • ไม่สิ้นสุด',target:0,time:90,obs:{rock:2},endless:true,chest:2});
 const LAST=STAGES.length-1;
 const unlocked=i=>i===0||(SAVE.stars[i-1]||0)>0;
@@ -534,7 +561,7 @@ const at=i=>{const[r,c]=rc(i);return grid[r][c];};
 function render(p){
  if(!p.el){p.el=document.createElement('div');boardEl.appendChild(p.el);}
  if(p.kind==='hero'){p.el.style.setProperty('--d',(-Math.random()*2.6).toFixed(2)+'s');p.el.className='pc hero lv'+p.lv;p.el.innerHTML=HERO_SVG[p.type]+(p.lv>1?`<div class="lvb">${p.lv}</div>`:'');}
- else{p.el.className='pc obs '+p.type;p.el.innerHTML=OBS_SVG[p.type]+(p.maxhp>1?`<div class="hp"><i style="width:${Math.max(0,100*p.hp/p.maxhp)}%"></i></div><div class="hpn">${p.hp}</div>`:'');}
+ else{p.el.style.setProperty('--d',(-Math.random()*1.5).toFixed(2)+'s');p.el.className='pc obs '+p.type+(p.type==='boss'&&p.hp<=10?' rage':'');p.el.innerHTML=OBS_SVG[p.type]+(p.maxhp>1?`<div class="hp"><i style="width:${Math.max(0,100*p.hp/p.maxhp)}%"></i></div><div class="hpn">${p.hp}</div>`:'');}
 }
 function setPos(p,r,c,dur=.16){p.r=r;p.c=c;p.el.style.transitionDuration=dur+'s';p.el.style.transform=`translate(${c*S}px,${r*S}px)`;}
 function setPosInstant(p,r,c){p.el.style.transition='none';p.el.style.transform=`translate(${c*S}px,${r*S}px)`;void p.el.offsetWidth;p.el.style.transition='';}
@@ -735,10 +762,11 @@ function hitObs(p,h,angry,mult=1){
  if(p.type==='boss'){while(p.hp<=p.nextSkill&&p.nextSkill>0){p.nextSkill-=10;angry.push(p);}}
 }
 async function bossSkill(b){
- cellText(b.r,b.c,'จอมมารโกรธ!','red');beep(120,.4,'sawtooth',.06);await wait(350);
+ cellText(b.r,b.c,'จอมมารโกรธ!','red');beep(120,.4,'sawtooth',.06);flashClass(b,'roar',520);shake(6);await wait(520);
  if(Math.random()<.5){
   const cand=[];for(let r=0;r<H;r++)for(let c=0;c<W;c++){const p=grid[r][c];if(isHero(p)&&p.lv===1)cand.push([r,c]);}
-  for(let k=0;k<3&&cand.length;k++){const[r,c]=cand.splice(rnd(cand.length),1)[0];popEl(grid[r][c]);const o=newObs('rock');grid[r][c]=o;render(o);setPosInstant(o,r,c);o.r=r;o.c=c;flashClass(o,'up');cellFx(r,c,'dark');droneFx(b.r,b.c,r,c);}
+  for(let k=0;k<3&&cand.length;k++){const[r,c]=cand.splice(rnd(cand.length),1)[0];popEl(grid[r][c]);const o=newObs('rock');grid[r][c]=o;render(o);setPosInstant(o,r,c);o.r=r;o.c=c;o.el.style.opacity=0;flyFx(OBS_SVG.rock,b.r,b.c,r,c);setTimeout(()=>{if(o.el){o.el.style.opacity='';flashClass(o,'up');}cellFx(r,c,'dark');shake(4);beep(160,.12,'square',.05);},450);await wait(160);}
+  await wait(400);
   toast('จอมมารเงาโยนก้อนหินลงกระดาน!');shake(10);
  }else{
   const cr=1+rnd(H-2),cc=1+rnd(W-2);
@@ -769,7 +797,7 @@ async function afterMove(){
  if(G.powers.ember>0){const r=rnd(H-1),c=rnd(W-1);cellText(r+.5,c+.5,'🔥','big');
   for(const[a,b]of[[r,c],[r+1,c],[r,c+1],[r+1,c+1]])cellFx(a,b,'fire');
   await runAction({clear:new Set([idx(r,c),idx(r+1,c),idx(r,c+1),idx(r+1,c+1)]),triggers:[],create:[]});}
- if(G.powers.frost>0){const cand=[];for(let r=0;r<H;r++)for(let c=0;c<W;c++){const p=grid[r][c];if(isHero(p)&&p.lv<3)cand.push(p);}
+ if(G.powers.frost>0){const cand=[];for(let r=0;r<H;r++)for(let c=0;c<W;c++){const p=grid[r][c];if(isHero(p)&&p.lv===1)cand.push(p);}
   if(cand.length){const p=cand[rnd(cand.length)];p.lv++;render(p);flashClass(p,'up',500);cellFx(p.r,p.c,'ice');beep(1200,.15,'sine',.04);await wait(250);}}
  await moveLizards();
  const g=findGroups();if(g.length)await runAction(groupsToPending(g));
@@ -836,14 +864,41 @@ function buildBoard(stage){
  for(let r=0;r<H;r++)for(let c=0;c<W;c++){const p=grid[r][c];render(p);setPosInstant(p,r-H-1,c);p.r=r;p.c=c;}
  requestAnimationFrame(()=>{for(let r=0;r<H;r++)for(let c=0;c<W;c++)setPos(grid[r][c],r,c,.35+(H-r)*.04+c*.01);});
 }
+function flyFx(svg,r1,c1,r2,c2){const d=document.createElement('div');d.className='flyer';d.innerHTML=svg;d.style.transition='none';
+ d.style.transform=`translate(${c1*S}px,${r1*S}px)`;fxEl.appendChild(d);void d.offsetWidth;d.style.transition='';d.style.transform=`translate(${c2*S}px,${r2*S}px)`;setTimeout(()=>d.remove(),470);}
+function siren(){for(let k=0;k<4;k++)setTimeout(()=>beep(k%2?520:780,.16,'square',.035),k*190);}
+async function warn(msg,boss){
+ const w=$('#boardWrap');w.classList.add('alarm');banner(msg,'warn');siren();
+ await wait(boss?1400:1000);w.classList.remove('alarm');}
+function pickCell(t){const cand=[];for(let r=0;r<H;r++)for(let c=0;c<W;c++){const p=grid[r][c];if(!isHero(p)||p.lv>1)continue;
+  if(t==='boss'&&(r<2||r>5||c<1||c>6))continue;cand.push([r,c]);}
+ return cand.length?cand[rnd(cand.length)]:null;}
+async function spawnMonster(t){
+ const cell=pickCell(t);if(!cell)return;const[r,c]=cell;
+ cellFx(r,c,'shadow');const old=grid[r][c];
+ const o=newObs(t);grid[r][c]=o;render(o);setPosInstant(o,r,c);o.r=r;o.c=c;o.el.classList.add('leap');o.el.style.zIndex=4;
+ swoosh();await wait(470);
+ if(old)popEl(old);
+ const[x,y]=boardXY(r,c);shake(t==='boss'?16:t==='rock'?4:9);ring(x,y,t==='boss'?'#ff4fd8':'#fff',t==='boss'?4:2);
+ burst(x,y,['#cdb8ff','#fff','#8a7ab8'],t==='boss'?40:16,t==='boss'?7:4,{up:0,g:.05});beep(t==='boss'?70:110,.3,'sawtooth',.07);
+ if(t==='boss'){flash('#3a0a50');cellText(r,c,'ฮ่าๆๆ!','red');}
+ for(const[dr,dc]of DIRS){const q=inB(r+dr,c+dc)&&grid[r+dr][c+dc];if(q&&q.el)flashClass(q,'nudge',300);}
+ await wait(300);if(o.el){o.el.classList.remove('leap');o.el.style.zIndex='';}
+}
+async function runWave(w){
+ if(!G)return;G.freeze=(G.freeze||0)+1;
+ try{await warn(w.msg,w.boss);
+  for(const[t,n]of Object.entries(w.m))for(let k=0;k<n;k++){if(!G||G.ended)break;await spawnMonster(t);await wait(120);}
+  if(G&&!hasMoves())await shuffle();}
+ finally{if(G)G.freeze=Math.max(0,G.freeze-1);}
+}
 function spawnRandomObstacle(){
  const hasBoss=grid.some(row=>row.some(p=>p&&p.type==='boss'));
  const pool=['rock','rock','lizard','ember','frost'];if(!hasBoss&&G.timeMax-G.time>30)pool.push('boss');
  const t=pool[rnd(pool.length)];
  const cand=[];for(let r=0;r<H;r++)for(let c=0;c<W;c++){const p=grid[r][c];if(isHero(p)&&p.lv===1)cand.push([r,c]);}
- if(!cand.length)return;const[r,c]=cand[rnd(cand.length)];popEl(grid[r][c]);
- const o=newObs(t);grid[r][c]=o;render(o);setPosInstant(o,r,c);o.r=r;o.c=c;flashClass(o,'up');cellFx(r,c,'dark');
- toast(OBS[t].name+' ปรากฏตัว!');
+ if(!cand.length)return;
+ act(()=>t==='boss'?runWave({msg:'⚠️ จอมมารเงาปรากฏตัว!',boss:true,m:{boss:1}}):spawnMonster(t));toast(OBS[t].name+' ปรากฏตัว!');
 }
 
 /* ================= GAME FLOW ================= */
@@ -865,7 +920,7 @@ function modal(id,on){$('#'+id).classList.toggle('on',on);}
 
 function startStage(i){
  stageIdx=i;const st=STAGES[i];
- G={stage:st,score:0,time:st.time,timeMax:st.time,items:{bolt:1,clock:1,bomb:1},skills:0,bossKills:0,powers:{ember:0,frost:0},fg:0,fever:0,stats:{maxC:0,fevers:0,timeAdd:0,blob:0,create:0,obs:0,combo:0,steps:0},shown:0,idle:0,hinted:false,lastSec:99,itemMode:null,running:false,paused:false,timeUp:false,ended:false,spawnT:0};
+ G={stage:st,score:0,time:st.time,timeMax:st.time,items:{bolt:1,clock:1,bomb:1},skills:0,bossKills:0,waveIdx:0,elapsed:0,powers:{ember:0,frost:0},fg:0,fever:0,stats:{maxC:0,fevers:0,timeAdd:0,blob:0,create:0,obs:0,combo:0,steps:0},shown:0,idle:0,hinted:false,lastSec:99,itemMode:null,running:false,paused:false,timeUp:false,ended:false,spawnT:0};
  busy=false;
  show('game');layout();
  $('#stageName').textContent=st.name;
@@ -873,10 +928,11 @@ function startStage(i){
  $('#scoreLbl').textContent=st.endless?`คะแนน (สูงสุด ${SAVE.best.toLocaleString()})`:'คะแนน / เป้าหมาย';
  buildBoard(st);updateHUD();
  $('#introTitle').textContent=st.name;
- const obsList=Object.keys(st.obs).map(t=>`<div>${OBS_SVG[t]}<span>${OBS[t].name}</span></div>`).join('');
+ const obsList=Object.keys(st.obs).length?Object.keys(st.obs).map(t=>`<div>${OBS_SVG[t]}<span>${OBS[t].name}</span></div>`).join(''):'<div>—</div>';
  $('#introBody').innerHTML=(st.endless?`<p>เล่นให้ได้คะแนนมากที่สุดใน ${st.time} วินาที<br>สิ่งกีดขวางจะโผล่มาเรื่อยๆ กำจัดเพื่อรับเวลาเพิ่ม!</p>`:
   `<p style="font-size:18px">เป้าหมายด่านนี้: <b style="color:#e8590c">${st.target.toLocaleString()}</b> คะแนน</p><p style="font-size:13px">⭐ ${st.target.toLocaleString()} • ⭐⭐ ${(st.target*1.5).toLocaleString()} • ⭐⭐⭐ ${(st.target*2).toLocaleString()}</p>`)
-  +`<div style="font-size:13px;margin-top:6px">สิ่งกีดขวางในด่าน</div><div class="intro-obs">${obsList}</div>`;
+  +`<div style="font-size:13px;margin-top:6px">สิ่งกีดขวางเริ่มต้น</div><div class="intro-obs">${obsList}</div>`
+  +(st.waves&&st.waves.length?`<div style="font-size:13px;margin-top:6px;color:#c0172f;font-weight:800">⚠️ ระวัง! มอนสเตอร์จะบุก ${st.waves.length} ระลอก</div><div class="intro-obs">${[...new Set(st.waves.flatMap(w=>Object.keys(w.m)))].map(t=>`<div>${OBS_SVG[t]}<span>${OBS[t].name}</span></div>`).join('')}</div>`:'');
  modal('introM',true);
 }
 $('#goBtn').onclick=async()=>{modal('introM',false);const g=G;
@@ -891,7 +947,9 @@ setInterval(()=>{
  if(G.fever>0)G.fever=Math.max(0,G.fever-dt);
  const sec=Math.ceil(G.time);if(G.time<=10&&sec!==G.lastSec&&sec>0){G.lastSec=sec;beep(sec<=3?1200:900,.06,'square',.03);}
  if(!busy){G.idle+=dt;if(G.idle>5&&!G.hinted){G.hinted=true;showHint();}}
- if(G.stage.endless){G.spawnT+=dt;if(G.spawnT>=10&&!busy){G.spawnT=0;spawnRandomObstacle();if(!hasMoves())act(shuffle);}}
+ if(G.stage.endless){G.spawnT+=dt;if(G.spawnT>=10&&!busy){G.spawnT=0;spawnRandomObstacle();}}
+ G.elapsed=(G.elapsed||0)+dt;
+ const wv=G.stage.waves;if(wv&&G.waveIdx<wv.length&&G.elapsed>=wv[G.waveIdx].at&&!busy){const w=wv[G.waveIdx++];act(()=>runWave(w));}
  if(G.time<=0){G.time=0;G.timeUp=true;if(!busy)endGame();}
  updateHUD();
 },100);
