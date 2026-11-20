@@ -1,0 +1,14 @@
+name = "game-hero-pop"
+main = "src/worker.js"
+compatibility_date = "2025-09-01"
+
+# ไฟล์เกม (HTML) เสิร์ฟผ่าน Cloudflare Static Assets
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+# ฐานข้อมูลตารางคะแนน — `npm run setup` จะสร้างและใส่ database_id ให้อัตโนมัติ
+[[d1_databases]]
+binding = "DB"
+database_name = "hero-pop-scores"
+database_id = "00000000-0000-0000-0000-000000000000"

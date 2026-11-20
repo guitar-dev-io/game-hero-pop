@@ -1,0 +1,16 @@
+{
+  "name": "game-hero-pop",
+  "version": "2.0.0",
+  "private": true,
+  "description": "ฮีโร่ป๊อป! เกมจับคู่สุดหรรษา พร้อมตารางคะแนน — รันเองด้วย Node หรือ deploy ขึ้น Cloudflare Workers + D1",
+  "type": "module",
+  "scripts": {
+    "serve": "node server/server.cjs",
+    "dev": "wrangler d1 execute hero-pop-scores --local --file=schema.sql && wrangler dev",
+    "setup": "node scripts/setup.mjs",
+    "deploy": "node scripts/setup.mjs && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.40.0"
+  }
+}

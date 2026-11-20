@@ -1,0 +1,5 @@
+node_modules/
+.wrangler/
+.dev.vars
+server/scores.json
+.DS_Store
