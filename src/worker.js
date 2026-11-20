@@ -1,6 +1,6 @@
 // ฮีโร่ป๊อป! — Cloudflare Worker
 // เสิร์ฟไฟล์เกมจาก ./public (Static Assets) และ API ตารางคะแนนที่ /api/scores (เก็บใน D1)
-const STAGES = 6, TOP = 10;
+const STAGES = 21, TOP = 10; // 20 ด่าน (0-19) + ด่านสุดท้าย (20)
 
 const json = (obj, status = 200) =>
   new Response(JSON.stringify(obj), {

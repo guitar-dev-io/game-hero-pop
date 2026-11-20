@@ -158,7 +158,97 @@ button{font:inherit;cursor:pointer;border:0}
 .lb td:nth-child(3){text-align:right;font-weight:800;color:#5b2bb5;font-variant-numeric:tabular-nums}
 .lb td:nth-child(2){text-align:left}
 .lb tr.me td{background:#fff2b8}
-.lb .tab{font-size:13px;padding:6px 10px}
+#lbTabs .tab,#lbSub .tab{font-size:13px;padding:6px 10px}
+/* ---- stage map ---- */
+#menu{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:8px;padding:10px 14px 14px;overflow-y:auto;overflow-x:hidden;text-align:center}
+.mhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.logo.sm{font-size:clamp(22px,5.5vw,32px);text-align:left}
+.wallet{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.chipv{background:#0006;border-radius:999px;padding:3px 10px 3px 4px;font-weight:800;font-size:14px;display:flex;align-items:center;gap:4px;box-shadow:inset 0 0 0 1.5px #ffffff40;font-variant-numeric:tabular-nums}
+.chipv svg{width:22px;height:22px}
+.mtitle{font-size:clamp(26px,6.5vw,44px);font-weight:900;text-align:left;line-height:1.1;color:#fff;text-shadow:0 3px 0 #3b2a9a,0 0 18px #b49bff}
+.mpills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{background:#2a1f6bcc;border:1px solid #ffffff33;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700;color:#fff}
+.qbtn{width:30px;padding:0;font-size:16px;font-weight:900}
+.stagearea{position:relative;flex:1 0 auto;min-height:clamp(330px,52vh,520px);width:100%;max-width:960px;margin:0 auto}
+.medal{position:absolute;transform:translate(-50%,-50%);width:clamp(108px,27vw,160px);aspect-ratio:1;cursor:pointer;background:none;padding:0;color:inherit}
+.medal .disc{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 40% 32%,#fffbe0,#f6d77a 52%,#c99a3a 88%);box-shadow:0 0 0 5px #fff5,0 0 0 9px #ffffff18,0 12px 26px #0008}
+.medal .disc::after{content:"";position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,#ffffff00 55%,#fff6 56%,#ffffff00 60%)}
+.medal .chest{position:absolute;left:14%;right:14%;top:12%;height:52%}
+.medal .chest svg,.medal .chk svg{width:100%;height:100%;overflow:visible}
+.medal .cnt{position:absolute;right:16%;top:44%;font-weight:900;font-size:clamp(16px,4vw,22px);color:#2a1660;text-shadow:0 0 3px #fff}
+.medal .chk{position:absolute;left:30%;right:22%;top:18%;height:40%}
+.medal .rib{position:absolute;left:-16%;right:-16%;bottom:4%;height:23%;background:linear-gradient(180deg,#6b9bff,#3653c8);color:#fff;font-weight:900;
+ display:flex;align-items:center;justify-content:center;font-size:clamp(13px,3.4vw,18px);text-shadow:0 2px 0 #1c2d7a;
+ clip-path:polygon(0 18%,9% 0,91% 0,100% 18%,94% 50%,100% 82%,91% 100%,9% 100%,0 82%,6% 50%)}
+.medal .tg{position:absolute;left:-30%;right:-30%;bottom:28%;text-align:center;font-size:clamp(10px,2.6vw,12px);font-weight:800;color:#4a2400;text-shadow:0 0 4px #fff,0 0 4px #fff;white-space:nowrap}
+.medal .tg b{color:#e8590c}
+.medal .st{position:absolute;top:-12%;left:0;right:0;font-size:15px;letter-spacing:1px;color:#ffd84d;text-shadow:0 1px 2px #000}
+.medal .st .off{color:#ffffff38}
+.medal .lockt{position:absolute;left:0;right:0;top:58%;font-weight:900;font-size:clamp(10px,2.6vw,13px);color:#5a4320;text-shadow:0 0 4px #fff8}
+.medal.locked .disc{filter:saturate(.5) brightness(.72)}
+.medal.locked .chest{filter:saturate(.5) brightness(.8)}
+.medal.sel{z-index:3;animation:mfloat 1.4s ease-in-out infinite alternate}
+.medal.sel .disc{box-shadow:0 0 0 5px #fff,0 0 36px 12px #ffe36bcc,0 12px 26px #0008}
+@keyframes mfloat{from{transform:translate(-50%,-50%) scale(1.06)}to{transform:translate(-50%,-56%) scale(1.1)}}
+.medal.final{width:clamp(170px,42vw,250px)}
+.medal.final .disc{background:radial-gradient(circle at 40% 32%,#b9a6ff,#6a4fd0 55%,#3b2a9a 90%)}
+.medal.final .inf{position:absolute;inset:14% 0 40%;display:flex;align-items:center;justify-content:center;font-size:clamp(60px,15vw,96px);font-weight:900;color:#ffd84d;text-shadow:0 4px 0 #8a5a00,0 0 18px #ffd84d;font-family:Georgia,serif}
+.medal.final .lockt{color:#fff;text-shadow:0 1px 3px #000}
+.medal.final .rib{background:linear-gradient(180deg,#f6d77a,#b9862a);color:#5a2a00;text-shadow:none}
+.emb{position:absolute;left:1%;bottom:1%;width:clamp(70px,16vw,110px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#ffe36b55,transparent 70%);pointer-events:none}
+.emb svg{width:100%;height:100%;filter:drop-shadow(0 0 8px #ffe36b)}
+.trophy{position:absolute;left:0;bottom:4%;width:clamp(120px,32vw,230px);aspect-ratio:3/4;pointer-events:none}
+.trophy .tb{position:absolute;filter:sepia(1) saturate(2.6) hue-rotate(-12deg) brightness(1.08) drop-shadow(0 4px 6px #0006)}
+.trophy .ped{position:absolute;left:10%;right:10%;bottom:0;height:24%;background:linear-gradient(180deg,#f6d77a,#9a6a1a);clip-path:polygon(10% 0,90% 0,100% 100%,0 100%);box-shadow:inset 0 6px 0 #fff6}
+.chbar{display:flex;align-items:center;justify-content:center;gap:6px}
+.arrow{background:none;color:#ffe9a8;font-size:28px;padding:4px 8px;text-shadow:0 0 10px #ffd84d}
+.arrow:disabled{opacity:.25}
+.chips{display:flex;align-items:center}
+.chips i{width:clamp(8px,3vw,22px);height:5px;background:#ffd84d}
+.chips i.off{background:#ffffff30}
+.chip{width:clamp(36px,10vw,48px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#6a5ae0,#2a1f6b);border:3px solid #c99a3a;font-family:Georgia,serif;font-weight:900;font-size:clamp(14px,4vw,20px);color:#fff;position:relative;transition:transform .2s;padding:0}
+.chip.done span{opacity:.35}
+.chip.done::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#4be08c;font-size:clamp(22px,6vw,30px);font-family:system-ui;text-shadow:0 2px 0 #0a6a3a}
+.chip.on{transform:scale(1.28);border-color:#ffe36b;box-shadow:0 0 16px #ffe36b;z-index:1}
+.chip.lock{filter:brightness(.6)}
+.mbtns{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.bigbtn{position:relative;padding:12px 24px;border-radius:16px;font-size:clamp(16px,4.4vw,20px);font-weight:900;color:#4b5bd0;background:linear-gradient(180deg,#ffffff,#e5e9ff);box-shadow:0 0 0 3px #f6d77a,0 5px 0 #8f7fd0,0 8px 16px #0006;min-width:150px}
+.bigbtn.gold{color:#6b3d00;background:linear-gradient(180deg,#fff6cf,#f2c75a)}
+.bigbtn:active{transform:translateY(3px);box-shadow:0 0 0 3px #f6d77a,0 2px 0 #8f7fd0}
+.bigbtn .dot{position:absolute;top:-4px;right:-4px;width:14px;height:14px;border-radius:50%;background:#ff4f7b;box-shadow:0 0 0 2px #fff;display:none}
+.bigbtn .dot.on{display:block}
+.mfoot{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:4px}
+.btnrow.sm .btn{padding:7px 14px;font-size:13px}
+.miss{display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:8px 10px;box-shadow:0 1px 3px #0002;text-align:left}
+.miss .rw{display:flex;gap:4px;flex:none}
+.rwi{position:relative;width:38px;height:38px;border-radius:10px;background:#efe6ff;display:flex;align-items:center;justify-content:center}
+.rwi svg{width:30px;height:30px}
+.rwi b{position:absolute;right:-3px;bottom:-5px;font-size:12px;color:#2a1660;background:#fff;border-radius:6px;padding:0 4px;box-shadow:0 1px 2px #0003}
+.miss .mt{flex:1;font-size:14px;font-weight:700;color:var(--ink)}
+.miss .mt small{display:block;font-weight:500;opacity:.7}
+.miss .cb{padding:7px 16px;border-radius:999px;font-weight:800;background:linear-gradient(#fff6cf,#f2c75a);color:#6b3d00;box-shadow:0 2px 0 #b9862a;flex:none}
+.miss .cb:disabled{background:#e6dcc4;color:#9a8a6a;box-shadow:none}
+.invrow{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.resreward{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;margin:6px 0;font-weight:800;color:#5b2bb5}
+.resreward .rch{width:64px;height:54px;animation:chestPop .8s 1s backwards}
+@keyframes chestPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.3) rotate(8deg)}}
+.ctrl{display:flex;flex-direction:column;gap:10px}
+@media (orientation:landscape) and (max-height:560px){
+ #menu{overflow:hidden;gap:4px;padding:6px 14px 8px}
+ .mtitle{display:none}
+ .mhead .logo.sm::after{content:" • จับคู่ฮีโร่สุดหรรษา";font-size:.6em}
+ .stagearea{min-height:0;flex:1 1 0}
+ .medal{width:clamp(72px,25vh,130px)}
+ .medal.final{width:clamp(110px,40vh,200px)}
+ .medal .st{font-size:12px}
+ .trophy{width:auto;height:96%}
+ .ctrl{flex-direction:row;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+ .bigbtn{padding:9px 18px;min-width:0}
+ .mfoot{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px;margin:0}
+ .mfoot .best{display:none}
+ .namebox input{width:130px;padding:4px 10px}
+}
 /* ---- wow layer ---- */
 #pfx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:45}
 #bgfloat{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
@@ -244,17 +334,28 @@ button{font:inherit;cursor:pointer;border:0}
 <div id="bgfloat"></div>
 <!-- MENU -->
 <div id="menu" class="screen on">
- <div class="logo">ฮีโร่ป๊อป!<br>จับคู่สุดหรรษา</div>
- <div class="sub">ลากสลับลูกอมฮีโร่ให้เรียง 3 ลูกขึ้นไป ทำคะแนนให้ถึงเป้าก่อนหมดเวลา</div>
- <div class="mascots" id="mascots"></div>
- <div class="path" id="path"></div>
- <div class="best" id="bestTxt"></div>
- <div class="namebox">ชื่อผู้เล่น: <input id="nameIn" maxlength="16" placeholder="ใส่ชื่อของคุณ"> <span id="netTxt" class="net"></span></div>
- <div class="btnrow">
-  <button class="btn gold" id="lbBtn">🏆 ตารางคะแนน</button>
-  <button class="btn" id="helpBtn">📖 คู่มือการเล่น</button>
-  <button class="btn" id="muteBtn">🔊 เสียง: เปิด</button>
-  <button class="btn" id="cutBtn">🎬 ฉากสกิล: เปิด</button>
+ <div class="mhead">
+  <div class="logo sm">ฮีโร่ป๊อป!</div>
+  <div class="wallet" id="wallet"></div>
+ </div>
+ <div class="mtitle">จับคู่ฮีโร่สุดหรรษา</div>
+ <div class="mpills"><span class="pill" id="chName"></span><span class="pill" id="starTotal"></span><button class="pill qbtn" id="helpBtn">?</button></div>
+ <div class="stagearea" id="stageArea"></div>
+ <div class="ctrl">
+ <div class="chbar"><button class="arrow" id="chPrev">◀</button><div class="chips" id="chips"></div><button class="arrow" id="chNext">▶</button></div>
+ <div class="mbtns">
+  <button class="bigbtn" id="missBtn">ภารกิจท้าทาย<i class="dot" id="missDot"></i></button>
+  <button class="bigbtn gold" id="playBtn">เริ่มการท้าทาย</button>
+ </div>
+ </div>
+ <div class="mfoot">
+  <div class="namebox">ชื่อ: <input id="nameIn" maxlength="16" placeholder="ใส่ชื่อของคุณ"> <span id="netTxt" class="net"></span></div>
+  <div class="btnrow sm">
+   <button class="btn" id="lbBtn">🏆 อันดับ</button>
+   <button class="btn" id="muteBtn">🔊 เสียง: เปิด</button>
+   <button class="btn" id="cutBtn">🎬 ฉากสกิล: เปิด</button>
+  </div>
+  <div class="best" id="bestTxt"></div>
  </div>
 </div>
 
@@ -302,6 +403,7 @@ button{font:inherit;cursor:pointer;border:0}
  <div class="bigstars" id="resStars"></div>
  <div style="font-size:15px;margin:6px 0">คะแนน <b id="resScore" style="font-size:26px;color:#5b2bb5">0</b></div>
  <div id="resNote" style="font-size:13px;opacity:.8"></div>
+ <div id="resReward" class="resreward"></div>
  <div id="resRank" style="font-size:14px;font-weight:800;color:#e8590c;margin-top:4px"></div>
  <div class="btnrow" style="margin-top:12px"><button class="btn gold" id="nextBtn">ด่านต่อไป</button><button class="btn" id="againBtn">เล่นอีกครั้ง</button><button class="btn" id="resLbBtn">🏆 อันดับ</button><button class="btn" id="menuBtn">เมนู</button></div>
 </div></div>
@@ -314,10 +416,17 @@ button{font:inherit;cursor:pointer;border:0}
 </div></div>
 <div class="modal" id="lbM"><div class="sheet">
  <h2>🏆 ตารางคะแนน</h2>
- <div class="tabs" id="lbTabs"></div>
+ <div class="tabs" id="lbTabs"></div><div class="tabs" id="lbSub"></div>
  <div id="lbMode" style="font-size:12px;opacity:.75;margin-bottom:6px"></div>
  <table class="lb"><thead><tr><th>#</th><th>ชื่อ</th><th>คะแนน</th><th>ดาว</th></tr></thead><tbody id="lbBody"></tbody></table>
  <div class="btnrow" style="margin-top:12px"><button class="btn gold" id="closeLb">ปิด</button></div>
+</div></div>
+<div class="modal" id="missM"><div class="sheet">
+ <h2>ภารกิจท้าทาย</h2>
+ <div class="tabs" id="missTabs"><button class="tab on" data-m="d">ภารกิจรายวัน</button><button class="tab" data-m="s">ภารกิจรอบนี้</button><button class="tab" data-m="x">แลกของ</button></div>
+ <div class="gl" id="missList"></div>
+ <div class="invrow" id="invRow"></div>
+ <div class="btnrow" style="margin-top:12px"><button class="btn gold" id="claimAll">รับทั้งหมด</button><button class="btn" id="closeMiss">ปิด</button></div>
 </div></div>
 <div class="toast" id="toast"></div>
 
@@ -363,36 +472,48 @@ const ITEM_SVG={
 const DRONE_SVG=svgWrap(`<path d="M50 14 L74 70 L50 58 L26 70Z" fill="#b36bff" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><circle cx="50" cy="44" r="7" fill="#ff4fd8"/>`);
 
 const HEROES=[
- {name:'อควา',col:'ฟ้า',lv2:'แตะ: ยิงคลื่นทำลาย <em>6 ลูก</em> ในทิศสุ่ม (ลากสลับเพื่อเลือกทิศ) มีโอกาสคริติคอลเพิ่มเป็น <em>8 ลูก</em>',lv3:'แตะ: ทำลายลูกอมรอบตัว <em>12 ลูก</em> คริติคอลขยายเป็น <em>24 ลูก</em>'},
- {name:'ลูน่า',col:'ขาว',lv2:'ทำลาย <em>4 ลูก</em> ตามทิศที่ลากสลับ ถ้าทำลายลูน่าได้ครบ <em>2 ลูก</em> จะ<em>รีเฟรช</em>ใช้ซ้ำได้ทันที',lv3:'ทำลายเป็นรูปกากบาททั้งแถวและคอลัมน์ ถ้าทำลายลูน่าได้ครบ <em>3 ลูก</em> จะรีเฟรชทันที'},
+ {name:'อควา',col:'ฟ้า',lv2:'แตะ: ยิงคลื่นทำลาย <em>6 ลูก</em> ในทิศสุ่ม (ลากสลับเพื่อเลือกทิศ) มีโอกาสคริติคอลเพิ่มเป็น <em>8 ลูก</em>',lv3:'แตะ: ทำลายลูกอมรอบตัว <em>12 ลูก</em> คริติคอลขยายเป็น <em>16 ลูก</em>'},
+ {name:'ลูน่า',col:'ขาว',lv2:'ทำลาย <em>4 ลูก</em> ตามทิศที่ลากสลับ ถ้าทำลายลูน่าได้ครบ <em>2 ลูก</em> จะ<em>รีเฟรช</em>ใช้ซ้ำได้ทันที',lv3:'ทำลายทั้งแนวตามทิศที่ลาก + ด้านข้างรวม <em>10 ลูก</em> ถ้าทำลายลูน่าได้ครบ <em>3 ลูก</em> จะรีเฟรชทันที'},
  {name:'โซล',col:'เหลือง',lv2:'แตะ: ทำลายลูกอมรอบตัว <em>4 ลูก</em> และเพิ่มเวลา <em>+2 วิ</em>',lv3:'แตะ: ทำลายรอบตัว <em>8 ลูก</em> และเพิ่มเวลา <em>+4 วิ</em>'},
- {name:'นิกซ์',col:'ม่วง',lv2:'แตะ: ปล่อยโดรนดารา <em>2 ตัว</em> บินไปจุดสุ่ม ระเบิดทำลายจุดละ <em>5 ลูก</em>',lv3:'แตะ: ปล่อยโดรนดารา <em>4 ตัว</em> ระเบิดจุดละ <em>5 ลูก</em>'}
+ {name:'นิกซ์',col:'ม่วง',lv2:'แตะ: ปล่อยโดรนดารา <em>2 ตัว</em> บินไปจุดสุ่ม ระเบิดทำลายจุดละ <em>5 ลูก</em>',lv3:'แตะ: ปล่อยโดรนดารา <em>3 ตัว</em> ระเบิดจุดละ <em>5 ลูก</em> (ครึ่งหนึ่งพุ่งใส่สิ่งกีดขวาง)'}
 ];
 const OBS={
  rock:{name:'ก้อนหิน',hp:1,desc:'ทำลายลูกอมข้างๆ <em>1 ครั้ง</em> เพื่อทุบทิ้ง',pts:200},
  lizard:{name:'กิ้งก่าแสง',hp:1,desc:'ชอบพุ่ง<em>ขึ้น-ลง</em>สลับที่กับลูกอมทุกตา ทำลายลูกอมข้างๆ <em>1 ครั้ง</em> เพื่อกำจัด',pts:1000},
  ember:{name:'โกเลมเพลิง',hp:8,desc:'ทำลายลูกอมรอบๆ <em>8 ครั้ง</em> เพื่อรับ<em>พลังเพลิง 40 วิ</em>: ทุกครั้งที่เล่น จะสุ่มทำลายลูกอม 2x2',pts:2000},
  frost:{name:'โกเลมน้ำแข็ง',hp:8,desc:'ทำลายลูกอมรอบๆ <em>8 ครั้ง</em> เพื่อรับ<em>พลังปัญญา 40 วิ</em>: ทุกครั้งที่เล่น จะสุ่มอัปเกรดลูกอม 1 ตัว',pts:2000},
- boss:{name:'จอมมารเงา',hp:30,desc:'ต้องทำลายลูกอมรอบๆ <em>30 ครั้ง</em> ทุกครั้งที่เสียพลังชีวิต 10 หน่วยจะโกรธและใช้สกิล: <em>โยนก้อนหิน 3 ก้อน</em> หรือ<em>กลืนกินลูกอม 3x3</em>',pts:5000}
+ boss:{name:'จอมมารเงา',hp:30,desc:'ต้องทำลายลูกอมรอบๆ <em>30 ครั้ง</em> (โดนได้สูงสุด 2 ครั้งต่อรอบการแตก) ทุกครั้งที่เสียพลังชีวิต 10 หน่วยจะโกรธและใช้สกิล: <em>โยนก้อนหิน 3 ก้อน</em> หรือ<em>กลืนกินลูกอม 3x3</em>',pts:5000}
 };
 const ITEMS={
  bolt:{name:'สายฟ้าเสริมพลัง',desc:'เลือกลูกอม 1 ลูก (ยกเว้น Lv.3) เพื่อ<em>อัปเกรด</em>ทันที'},
  clock:{name:'นาฬิกาล้างสี',desc:'เลือกลูกอม 1 ลูก เพื่อทำลายลูกอม<em>ชนิดเดียวกันทั้งกระดาน</em>'},
  bomb:{name:'ระเบิดพลังงาน',desc:'เลือกตำแหน่งใดก็ได้ ทำลายลูกอม <em>3x3</em>'}
 };
-const STAGES=[
- {num:'I',name:'ด่าน 1',target:15000,time:60,obs:{rock:3}},
- {num:'II',name:'ด่าน 2',target:35000,time:60,obs:{rock:2,ember:1}},
- {num:'III',name:'ด่าน 3',target:25000,time:60,obs:{frost:1,lizard:2}},
- {num:'IV',name:'ด่าน 4',target:30000,time:60,obs:{boss:1,ember:1}},
- {num:'V',name:'ด่าน 5',target:20000,time:60,obs:{boss:1,ember:1,frost:1,lizard:2}},
- {num:'∞',name:'โหมดไม่สิ้นสุด',target:0,time:90,obs:{rock:2},endless:true}
+const CHAPTERS=[
+ {num:'I',name:'บทที่ 1 • ลานหินป่วน',base:45000,emb:'rock',obs:k=>({rock:2+k})},
+ {num:'II',name:'บทที่ 2 • โกเลมเพลิงตื่น',base:50000,emb:'ember',obs:k=>({rock:1+(k>1?1:0),ember:1+(k===3?1:0)})},
+ {num:'III',name:'บทที่ 3 • ทุ่งน้ำแข็งกับกิ้งก่า',base:55000,emb:'frost',obs:k=>({frost:1,lizard:1+(k>>1)+(k===3?1:0)})},
+ {num:'IV',name:'บทที่ 4 • เงาจอมมาร',base:60000,emb:'boss',obs:k=>({boss:1,ember:k>=2?1:0,rock:k})},
+ {num:'V',name:'บทที่ 5 • ศึกสุดท้าย',base:65000,emb:'boss',obs:k=>({boss:1,ember:1,frost:k>=1?1:0,lizard:1+(k>=2?1:0)})}
 ];
+const STAGES=[];
+CHAPTERS.forEach((ch,ci)=>{for(let k=0;k<4;k++){const o=ch.obs(k);for(const t in o)if(!o[t])delete o[t];
+ STAGES.push({ch:ci,sub:k,num:ch.num,label:`${ci+1}-${k+1}`,name:`ด่านที่ ${ci+1}-${k+1}`,target:ch.base+k*5000,time:60,obs:o,chest:k===3?2:1});}});
+STAGES.push({ch:5,sub:0,num:'∞',label:'∞',name:'ด่านสุดท้าย • ไม่สิ้นสุด',target:0,time:90,obs:{rock:2},endless:true,chest:2});
+const LAST=STAGES.length-1;
+const unlocked=i=>i===0||(SAVE.stars[i-1]||0)>0;
 
 /* ================= SAVE / SOUND ================= */
-let SAVE={stars:[0,0,0,0,0],best:0,muted:false};
+let SAVE={stars:[],best:0,muted:false};
 try{const s=JSON.parse(localStorage.getItem('heroPopSave')||'null'); if(s) SAVE=Object.assign(SAVE,s);}catch(e){}
 const save=()=>{try{localStorage.setItem('heroPopSave',JSON.stringify(SAVE));}catch(e){}};
+if(!Array.isArray(SAVE.stars)||SAVE.stars.length!==20)SAVE.stars=Array(20).fill(0);
+if(!Array.isArray(SAVE.bestS)||SAVE.bestS.length!==21)SAVE.bestS=Array(21).fill(0);
+if(!Array.isArray(SAVE.claimed)||SAVE.claimed.length!==21)SAVE.claimed=Array(21).fill(false);
+SAVE.inv=Object.assign({bolt:0,clock:0,bomb:0},SAVE.inv);SAVE.coins=SAVE.coins||0;
+SAVE.season=Object.assign({boss:0,got:{}},SAVE.season);
+function ensureDaily(){const d=new Date().toDateString();if(!SAVE.daily||SAVE.daily.date!==d)SAVE.daily={date:d,prog:{login:1,play:0,skill:0,fever:0},got:{}};}
+ensureDaily();
 let AC=null;
 function beep(f=600,d=.08,type='sine',vol=.05){
  if(SAVE.muted) return;
@@ -484,8 +605,9 @@ function cutIn(t,lv,opt={}){
  d.style.setProperty('--dur',dur+'s');d.style.setProperty('--cc',CC[t][0]);d.style.setProperty('--cc2',CC[t][1]);
  d.innerHTML=`<div class="ci-band"></div><div class="ci-hero">${HERO_BIG[t]}</div><div class="ci-text"><div class="ci-in"><b>${HEROES[t].name}${lv>1?' Lv.'+lv:''}</b><span>${opt.label||SKILL[t]}</span></div></div><div class="ci-slash"></div>`;
  $('#boardWrap').appendChild(d);swoosh();
+ if(G)G.freeze=(G.freeze||0)+1;const g0=G;
  setTimeout(()=>{flash(CC[t][1]);shake(mini?4:10);const b=boardEl.getBoundingClientRect();burst(b.left+b.width/2,b.top+b.height/2,[CC[t][0],CC[t][1],'#fff'],mini?14:30,7,{shape:'star'});beep(140,.18,'square',.05);},dur*1000*.46);
- setTimeout(()=>d.remove(),dur*1000+60);
+ setTimeout(()=>{d.remove();if(g0)g0.freeze=Math.max(0,g0.freeze-1);},dur*1000+60);
  return wait(dur*1000*.5);
 }
 function bump(el){el.classList.remove('bump');void el.offsetWidth;el.classList.add('bump');}
@@ -540,22 +662,22 @@ function activate(p,r,c,dir,player){
  if(p.type===0){
   const crit=Math.random()<.25;
   if(p.lv===2){lineExt(crit?8:6);}
-  else{const R=crit?3:2;for(let dr=-R;dr<=R;dr++)for(let dc=-R;dc<=R;dc++){if((dr||dc)&&(crit?true:Math.abs(dr)+Math.abs(dc)<=R)&&inB(r+dr,c+dc))cells.push(idx(r+dr,c+dc));}}
+  else{for(let dr=-3;dr<=3;dr++)for(let dc=-3;dc<=3;dc++){const m=Math.abs(dr)+Math.abs(dc);if(m&&(m<=2||(crit&&m===3&&(dr===0||dc===0)))&&inB(r+dr,c+dc))cells.push(idx(r+dr,c+dc));}}
   if(crit){cellText(r,c,'คริติคอล!','gold');shake(5);}
   if(p.lv===3){shake(7);const[x,y]=boardXY(r,c);ring(x,y,'#5cd0ff',3);}
   cells.forEach((i,k)=>{const[a,b]=rc(i);cellFx(a,b,col,k*25);});beep(520,.15,'triangle');
  }else if(p.type===1){
   if(p.lv===2)lineExt(4);
-  else{for(let k=0;k<W;k++)if(k!==c)cells.push(idx(r,k));for(let k=0;k<H;k++)if(k!==r)cells.push(idx(k,c));}
+  else{lineExt(7);const pd=[dir[1],dir[0]];let k=0;for(const[m]of[[1],[-1],[2],[-2]]){if(k>=3)break;const rr=r+pd[0]*m,cc=c+pd[1]*m;if(inB(rr,cc)){cells.push(idx(rr,cc));k++;}}}
   const need=p.lv===2?2:3;const luna=cells.filter(i=>{const q=at(i);return isHero(q)&&q.type===1;}).length;
-  if(player&&luna>=need){refresh=true;setTimeout(()=>cellText(r,c,'รีเฟรช!','gold'),150);}
+  if(luna>=need){refresh=true;setTimeout(()=>cellText(r,c,'รีเฟรช!','gold'),150);}
   cells.forEach((i,k)=>{const[a,b]=rc(i);cellFx(a,b,col,k*30);});beep(880,.12,'sine');
  }else if(p.type===2){
   const ns=p.lv===2?DIRS:DIRS.concat(DIAG);ns.forEach(([dr,dc])=>{if(inB(r+dr,c+dc))cells.push(idx(r+dr,c+dc));});
   time=p.lv===2?2:4;cellText(r,c,'+'+time+' วิ','gold');
   cells.forEach(i=>{const[a,b]=rc(i);cellFx(a,b,col);});cellFx(r,c,col);beep(660,.2,'square',.03);
  }else{
-  const n=p.lv===2?2:4;const obsCells=[];
+  const n=p.lv===2?2:3;const obsCells=[];
   for(let a=0;a<H;a++)for(let b=0;b<W;b++)if(grid[a][b]&&grid[a][b].kind==='obs')obsCells.push([a,b]);
   for(let k=0;k<n;k++){let tr,tc;if(obsCells.length&&Math.random()<.5){[tr,tc]=obsCells[rnd(obsCells.length)];}else{tr=rnd(H);tc=rnd(W);}
    droneFx(r,c,tr,tc);[[0,0]].concat(DIRS).forEach(([dr,dc])=>{if(inB(tr+dr,tc+dc)){cells.push(idx(tr+dr,tc+dc));cellFx(tr+dr,tc+dc,col,330);}});}
@@ -575,7 +697,7 @@ async function processClear(pend,cascade){
  while(queue.length){
   const t=queue.shift();if(triggered.has(t.i))continue;triggered.add(t.i);
   const p=at(t.i);if(!isHero(p)||p.lv<2)continue;const[r,c]=rc(t.i);
-  if(t.player&&!cut){cut=true;await cutIn(p.type,p.lv);}
+  if(t.player){G.skills++;if(!cut){cut=true;await cutIn(p.type,p.lv);}}
   clear.add(t.i);
   const eff=activate(p,r,c,t.dir,t.player);
   timeBonus+=eff.time;eff.cells.forEach(add);
@@ -583,28 +705,29 @@ async function processClear(pend,cascade){
   await wait(eff.delay);
  }
  for(const i of clear){const[r,c]=rc(i);for(const[dr,dc]of DIRS){const rr=r+dr,cc=c+dc;if(inB(rr,cc)){const q=grid[rr][cc];if(q&&q.kind==='obs'&&!clear.has(idx(rr,cc)))hit(idx(rr,cc));}}}
- const mult=(1+.5*cascade)*(G.fever>0?2:1);let gained=0,sr=0,sc=0,n=0;
+ const mult=Math.min(3,1+.5*cascade)*(G.fever>0?2:1);let gained=0,sr=0,sc=0,n=0;
  for(const i of clear){const[r,c]=rc(i);const p=grid[r][c];if(!p)continue;grid[r][c]=null;popEl(p);{const[x,y]=boardXY(r,c);burst(x,y,PCOL[p.type],clear.size>20?4:7,3.5);if(p.lv>1)ring(x,y,PCOL[p.type][0],1.5);}
-  gained+=Math.round(100*mult*(p.lv>1?2:1));sr+=r;sc+=c;n++;}
+  gained+=Math.round(100*mult*(p.lv>1?2:1));G.stats.blob+=Math.round(100*mult*(p.lv>1?2:1));G.stats.steps++;sr+=r;sc+=c;n++;}
  if(n)beep(400+cascade*120,.09,'sine',.05);
  if(n>=15){shake(Math.min(12,n/3));flash();}
- if(n&&G.fever<=0){G.fg+=n*1.4*(1+cascade*.4);if(G.fg>=100){G.fg=0;startFever();}}
- for(const cr of pend.create){const p=at(cr.i);if(isHero(p)){p.lv=Math.max(p.lv,cr.lv);render(p);flashClass(p,'up',500);cellFx(p.r,p.c,'c'+p.type);gained+=cr.lv*250;{const[x,y]=boardXY(p.r,p.c);ring(x,y,'#fff',1.4);burst(x,y,['#fff','#ffe36b'],12,3,{shape:'star'});}}}
+ if(n&&G.fever<=0){G.fg+=n*.55;if(G.fg>=100){G.fg=0;startFever();}}
+ for(const cr of pend.create){const p=at(cr.i);if(isHero(p)){p.lv=Math.max(p.lv,cr.lv);render(p);flashClass(p,'up',500);cellFx(p.r,p.c,'c'+p.type);gained+=Math.round(cr.lv*250*mult);{const[x,y]=boardXY(p.r,p.c);ring(x,y,'#fff',1.4);burst(x,y,['#fff','#ffe36b'],12,3,{shape:'star'});}}}
  if(pend.create.length)beep(990,.18,'triangle',.05);
  if(gained){addScore(gained);if(n)floatText((sc/n+.5)*S,(sr/n+.5)*S,'+'+gained);}
  if(timeBonus)addTime(timeBonus);
  const angry=[];
- for(const[i,h]of dmg){const p=at(i);if(!p||p.kind!=='obs')continue;hitObs(p,h,angry);}
+ for(const[i,h]of dmg){const p=at(i);if(!p||p.kind!=='obs')continue;hitObs(p,Math.min(h,MAXHIT),angry,mult);}
  await wait(n?230:120);
  for(const b of angry){if(at(idx(b.r,b.c))===b)await bossSkill(b);}
 }
-function hitObs(p,h,angry){
+const MAXHIT=2; // (4) สิ่งกีดขวางเสียได้สูงสุด 2 HP ต่อการแตก 1 รอบ
+function hitObs(p,h,angry,mult=1){
  p.hp-=h;
- if(p.hp<=0){const o=OBS[p.type];grid[p.r][p.c]=null;cellFx(p.r,p.c,'boom');popEl(p);addScore(o.pts);{const[x,y]=boardXY(p.r,p.c);burst(x,y,['#ffb02e','#ff4f7b','#fff','#ffe36b'],p.type==='boss'?60:26,p.type==='boss'?8:5,{size:1.4});ring(x,y,'#ffb02e',p.type==='boss'?5:2.5);shake(p.type==='boss'?16:p.maxhp>1?9:3);if(p.maxhp>1)flash('#ffe9b0');}
-  cellText(p.r,p.c,'+'+o.pts,'gold');beep(220,.3,'square',.05);
+ if(p.hp<=0){const o=OBS[p.type];grid[p.r][p.c]=null;cellFx(p.r,p.c,'boom');popEl(p);const pts=Math.round(o.pts*mult);addScore(pts);{const[x,y]=boardXY(p.r,p.c);burst(x,y,['#ffb02e','#ff4f7b','#fff','#ffe36b'],p.type==='boss'?60:26,p.type==='boss'?8:5,{size:1.4});ring(x,y,'#ffb02e',p.type==='boss'?5:2.5);shake(p.type==='boss'?16:p.maxhp>1?9:3);if(p.maxhp>1)flash('#ffe9b0');}
+  cellText(p.r,p.c,'+'+pts,'gold');beep(220,.3,'square',.05);
   if(p.type==='ember'){G.powers.ember=40;centerText('🔥 พลังเพลิง 40 วิ!');}
   if(p.type==='frost'){G.powers.frost=40;centerText('❄️ พลังปัญญา 40 วิ!');}
-  if(p.type==='boss')centerText('ปราบจอมมารเงาสำเร็จ!');
+  if(p.type==='boss'){centerText('ปราบจอมมารเงาสำเร็จ!');G.bossKills++;}
   if(p.type==='lizard')cellText(p.r,p.c,'จับได้แล้ว!','gold');
   if(G.stage.endless&&p.type!=='rock')addTime(p.type==='boss'?10:3);
   return;}
@@ -628,7 +751,7 @@ async function gravity(){
  let maxD=0;
  for(let c=0;c<W;c++){let w=H-1;
   for(let r=H-1;r>=0;r--){const p=grid[r][c];if(p){if(w!==r){grid[w][c]=p;grid[r][c]=null;const d=.1+.045*(w-r);maxD=Math.max(maxD,d);setPos(p,w,c,d);}w--;}}
-  let k=1;for(let r=w;r>=0;r--){const p=newHero(rnd(4),G&&G.fever>0&&Math.random()<.07?2:1);grid[r][c]=p;render(p);setPosInstant(p,-k,c);const d=.1+.045*(r+k);maxD=Math.max(maxD,d);setPos(p,r,c,d);k++;}
+  let k=1;for(let r=w;r>=0;r--){const p=newHero(rnd(4),G&&G.fever>0&&Math.random()<.03?2:1);grid[r][c]=p;render(p);setPosInstant(p,-k,c);const d=.1+.045*(r+k);maxD=Math.max(maxD,d);setPos(p,r,c,d);k++;}
  }
  await wait(maxD*1000+30);
 }
@@ -638,7 +761,7 @@ async function runAction(pend){
   await processClear(pend,cascade);
   await gravity();
   const groups=findGroups();if(!groups.length)break;
-  cascade++;centerText('คอมโบ x'+(cascade+1),'gold');if(cascade>=2)banner(['','','ดีมาก!','เยี่ยมไปเลย!','สุดยอด!!','เทพมาก!!!'][Math.min(5,cascade)],cascade>=4?'huge':'');
+  cascade++;G.stats.maxC=Math.max(G.stats.maxC,cascade);centerText('คอมโบ x'+(cascade+1),'gold');if(cascade>=2)banner(['','','ดีมาก!','เยี่ยมไปเลย!','สุดยอด!!','เทพมาก!!!'][Math.min(5,cascade)],cascade>=4?'huge':'');
   pend=groupsToPending(groups);
  }
 }
@@ -675,10 +798,13 @@ async function shuffle(){
 
 /* ================= SCORE / HUD ================= */
 function addScore(n){G.score+=n;updateHUD();}
-function startFever(){G.fever=8;banner('FEVER!! x2','huge fever');flash('#ffd6ff');confetti(60);beep(523,.1,'square',.04);setTimeout(()=>beep(659,.1,'square',.04),100);setTimeout(()=>beep(784,.2,'square',.04),200);}
+const itemCount=k=>G.items[k]+(SAVE.inv[k]||0);
+function useItem(k){if(G.items[k]>0)G.items[k]--;else{SAVE.inv[k]=Math.max(0,SAVE.inv[k]-1);save();}}
+function startFever(){G.fever=8;G.stats.fevers++;banner('FEVER!! x2','huge fever');flash('#ffd6ff');confetti(60);beep(523,.1,'square',.04);setTimeout(()=>beep(659,.1,'square',.04),100);setTimeout(()=>beep(784,.2,'square',.04),200);}
 setInterval(()=>{if(!G)return;if(G.shown!==G.score){const d=G.score-G.shown;G.shown+=Math.sign(d)*Math.max(1,Math.ceil(Math.abs(d)*.18));
  const st=G.stage;$('#scoreTxt').textContent=st.endless?G.shown.toLocaleString():`${G.shown.toLocaleString()} / ${st.target.toLocaleString()}`;if(d>300)bump($('#scoreTxt'));}},40);
-function addTime(s){G.time+=s;if(!G.stage.endless)G.time=Math.min(G.time,G.timeMax+30);updateHUD();}
+const TIME_CAP=20; // เวลาโบนัสรวมสูงสุดต่อเกม (โหมดไม่สิ้นสุด 60)
+function addTime(s){const cap=G.stage.endless?60:TIME_CAP;s=Math.min(s,cap-G.stats.timeAdd);if(s<=0){return;}G.stats.timeAdd+=s;G.time+=s;updateHUD();}
 function updateHUD(){
  if(!G)return;
  const st=G.stage;
@@ -688,8 +814,8 @@ function updateHUD(){
  $('#timeBar').classList.toggle('low',G.time<10);$('#timeTxt').classList.toggle('low',G.time<10&&G.running);
  $('#feverBar i').style.width=(G.fever>0?G.fever/8*100:G.fg)+'%';$('#feverLbl').textContent=G.fever>0?`🌈 FEVER x2 • ${G.fever.toFixed(1)} วิ`:'⚡ เกจ FEVER';
  gameEl.classList.toggle('fever',G.fever>0);
- $('#cBolt').textContent=G.items.bolt;$('#cClock').textContent=G.items.clock;$('#cBomb').textContent=G.items.bomb;
- document.querySelectorAll('.item').forEach(b=>{b.disabled=G.items[b.dataset.item]<=0;b.classList.toggle('on',G.itemMode===b.dataset.item);});
+ $('#cBolt').textContent=itemCount('bolt');$('#cClock').textContent=itemCount('clock');$('#cBomb').textContent=itemCount('bomb');
+ document.querySelectorAll('.item').forEach(b=>{b.disabled=itemCount(b.dataset.item)<=0;b.classList.toggle('on',G.itemMode===b.dataset.item);});
  let pw='';if(G.powers.ember>0)pw+=`<span class="pw ember">🔥 พลังเพลิง ${Math.ceil(G.powers.ember)} วิ</span>`;
  if(G.powers.frost>0)pw+=`<span class="pw frost">❄️ พลังปัญญา ${Math.ceil(G.powers.frost)} วิ</span>`;
  const pe=$('#powers');if(pe.innerHTML!==pw)pe.innerHTML=pw;
@@ -739,7 +865,7 @@ function modal(id,on){$('#'+id).classList.toggle('on',on);}
 
 function startStage(i){
  stageIdx=i;const st=STAGES[i];
- G={stage:st,score:0,time:st.time,timeMax:st.time,items:{bolt:3,clock:2,bomb:3},powers:{ember:0,frost:0},fg:0,fever:0,shown:0,idle:0,hinted:false,lastSec:99,itemMode:null,running:false,paused:false,timeUp:false,ended:false,spawnT:0};
+ G={stage:st,score:0,time:st.time,timeMax:st.time,items:{bolt:1,clock:1,bomb:1},skills:0,bossKills:0,powers:{ember:0,frost:0},fg:0,fever:0,stats:{maxC:0,fevers:0,timeAdd:0,blob:0,create:0,obs:0,combo:0,steps:0},shown:0,idle:0,hinted:false,lastSec:99,itemMode:null,running:false,paused:false,timeUp:false,ended:false,spawnT:0};
  busy=false;
  show('game');layout();
  $('#stageName').textContent=st.name;
@@ -758,7 +884,7 @@ $('#goBtn').onclick=async()=>{modal('introM',false);const g=G;
  if(G!==g)return;banner('เริ่ม!','huge');beep(880,.25,'triangle');confetti(40);G.running=true;};
 
 setInterval(()=>{
- if(!G||!G.running||G.paused||G.ended)return;
+ if(!G||!G.running||G.paused||G.ended||G.freeze>0)return;
  const dt=.1;G.time-=dt;
  if(G.powers.ember>0)G.powers.ember=Math.max(0,G.powers.ember-dt);
  if(G.powers.frost>0)G.powers.frost=Math.max(0,G.powers.frost-dt);
@@ -790,13 +916,20 @@ function endGame(){
  if(st.endless){const nb=G.score>SAVE.best;if(nb)SAVE.best=G.score;save();
   $('#resTitle').textContent=nb?'สถิติใหม่!':'หมดเวลา!';$('#resStars').innerHTML='🏆';$('#resNote').textContent='คะแนนสูงสุด: '+SAVE.best.toLocaleString();$('#nextBtn').style.display='none';}
  else{stars=G.score>=st.target*2?3:G.score>=st.target*1.5?2:G.score>=st.target?1:0;
-  SAVE.stars[stageIdx]=Math.max(SAVE.stars[stageIdx]||0,stars);save();
+  SAVE.stars[stageIdx]=Math.max(SAVE.stars[stageIdx]||0,stars);
   $('#resTitle').textContent=stars?'ผ่านด่าน!':'ยังไม่ถึงเป้าหมาย';
   $('#resStars').innerHTML=[0,1,2].map(k=>k<stars?`<span style="animation-delay:${.7+k*.35}s">★</span>`:'<span class="off">★</span>').join('');
   for(let k=0;k<stars;k++)setTimeout(()=>beep(660+k*220,.15,'triangle',.06),1700+k*350);
   $('#resNote').textContent=stars?'':'ต้องการ '+st.target.toLocaleString()+' คะแนน ลองใหม่อีกครั้ง!';
-  $('#nextBtn').style.display=stars&&stageIdx<4?'':'none';}
+  $('#nextBtn').style.display=stars&&stageIdx<LAST?'':'none';}
  $('#resScore').textContent=G.score.toLocaleString();
+ SAVE.bestS[stageIdx]=Math.max(SAVE.bestS[stageIdx]||0,G.score);
+ ensureDaily();SAVE.daily.prog.play++;SAVE.daily.prog.skill+=G.skills;SAVE.daily.prog.fever+=G.stats.fevers;SAVE.season.boss+=G.bossKills;
+ const coins=Math.floor(G.score/2000)+stars*5;SAVE.coins+=coins;
+ let rw=`<span>+${coins}</span>${COIN_SVG.replace('<svg ','<svg width="22" height="22" ')}`;
+ if((stars||st.endless)&&!SAVE.claimed[stageIdx]){SAVE.claimed[stageIdx]=true;const got=openChest(st.chest);
+  rw=`<span class="rch">${chestSVG(true)}</span><span>กล่องสมบัติ!</span>`+rewardHTML(got)+rw;}
+ $('#resReward').innerHTML=rw;save();
  $('#resRank').textContent='';lbStage=stageIdx;
  submitScore(stageIdx,G.score,stars).then(rank=>{if(rank)$('#resRank').textContent=`อันดับที่ ${rank} ${NET.online?'บนเซิร์ฟเวอร์':'ในเครื่องนี้'}!`;});
  beep(stars||st.endless?880:200,.4,'triangle',.06);
@@ -840,7 +973,7 @@ async function doSwap(r1,c1,r2,c2){
   await Promise.all([cutIn(a.type,3,{full:true,label:'สุดยอดคอมโบ!'}),cutIn(b.type,3,{full:true,right:true,label:both3?'ล้างทั้งกระดาน!':'คอมโบคู่!'})]);
   a.lv=1;b.lv=1;render(a);render(b);setPos(a,r2,c2,0);setPos(b,r1,c1,0);
   flash();shake(16);{const[x,y]=boardXY(r2,c2);ring(x,y,'#fff',6);burst(x,y,CONF,70,9,{size:1.5});}beep(200,.5,'sawtooth',.07);
-  addScore(both3?5000:1500);await wait(350);
+  addScore((both3?5000:1500)*(G.fever>0?2:1));await wait(350);
   await runAction({clear:cl,triggers:[],create:[]});await afterMove();return;}
  const groups=findGroups();
  const trig=[];if(a.lv>1)trig.push({i:idx(r2,c2),dir,player:true});if(b.lv>1)trig.push({i:idx(r1,c1),dir:[-dir[0],-dir[1]],player:true});
@@ -859,38 +992,117 @@ async function doTap(r,c){
 async function applyItem(r,c){
  const m=G.itemMode,p=grid[r][c];
  if(m==='bolt'){if(!isHero(p)||p.lv>=3){toast('เลือกลูกอมฮีโร่ที่ยังไม่ถึง Lv.3');return;}
-  G.items.bolt--;G.itemMode=null;p.lv++;render(p);flashClass(p,'up',500);cellFx(r,c,'c'+p.type);beep(1000,.2,'triangle');updateHUD();await wait(300);return;}
+  useItem('bolt');G.itemMode=null;p.lv++;render(p);flashClass(p,'up',500);cellFx(r,c,'c'+p.type);beep(1000,.2,'triangle');updateHUD();await wait(300);return;}
  if(m==='clock'){if(!isHero(p)){toast('เลือกลูกอมฮีโร่ 1 ลูก');return;}
-  G.items.clock--;G.itemMode=null;updateHUD();const t=p.type;const cl=new Set();
+  useItem('clock');G.itemMode=null;updateHUD();const t=p.type;const cl=new Set();
   for(let a=0;a<H;a++)for(let b=0;b<W;b++){const q=grid[a][b];if(isHero(q)&&q.type===t){cl.add(idx(a,b));cellFx(a,b,'c'+t,(Math.abs(a-r)+Math.abs(b-c))*30);}}
   beep(700,.3,'sine');await wait(250);await runAction({clear:cl,triggers:[],create:[]});await afterMove();return;}
- if(m==='bomb'){G.items.bomb--;G.itemMode=null;updateHUD();const cl=new Set();
+ if(m==='bomb'){useItem('bomb');G.itemMode=null;updateHUD();const cl=new Set();
   for(let dr=-1;dr<=1;dr++)for(let dc=-1;dc<=1;dc++)if(inB(r+dr,c+dc)){cl.add(idx(r+dr,c+dc));cellFx(r+dr,c+dc,'boom');}
   shake(12);flash('#ffd0a0');{const[x,y]=boardXY(r,c);burst(x,y,['#ffb02e','#ff4f7b','#fff'],40,7);ring(x,y,'#ffb02e',2.5);}beep(150,.35,'sawtooth',.06);await runAction({clear:cl,triggers:[],create:[]});await afterMove();}
 }
 document.querySelectorAll('.item').forEach(b=>b.onclick=()=>{
- if(!G||!G.running||busy)return;const k=b.dataset.item;if(G.items[k]<=0)return;
+ if(!G||!G.running||busy)return;const k=b.dataset.item;if(itemCount(k)<=0)return;
  G.itemMode=G.itemMode===k?null:k;
  $('#hint').textContent=G.itemMode?('ใช้ '+ITEMS[k].name+': แตะเลือกบนกระดาน (แตะไอเทมอีกครั้งเพื่อยกเลิก)'):'ลากเพื่อสลับ • แตะลูกอม Lv.2/3 เพื่อใช้สกิล';
  updateHUD();
 });
 
 /* ================= MENU / MODALS ================= */
+const COIN_SVG='<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="44" fill="#f6c945" stroke="#a8741a" stroke-width="6"/><path d="M50 20 L58 41 L81 42 L63 57 L69 80 L50 67 L31 80 L37 57 L19 42 L42 41Z" fill="#fff4c2" stroke="#a8741a" stroke-width="3" stroke-linejoin="round"/></svg>';
+const CHECK_SVG='<svg viewBox="0 0 100 100"><path d="M12 52 L40 78 L90 20" stroke="#14603a" stroke-width="24" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 52 L40 78 L90 20" stroke="#4be08c" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function chestSVG(open){return `<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+ ${open?`<path d="M14 40 L24 12 L96 12 L106 40Z" fill="#3a1f80" stroke="#2a1660" stroke-width="3" stroke-linejoin="round"/><ellipse cx="60" cy="40" rx="44" ry="9" fill="#ffe36b" opacity=".85"/><path d="M60 34 L60 6 M42 36 L34 14 M78 36 L86 14" stroke="#fff6b0" stroke-width="3" stroke-linecap="round" opacity=".8"/>`:
+ `<path d="M38 30 L48 6 L54 24 L70 12 L64 34Z" fill="#c38bff" stroke="#ffd34d" stroke-width="2.5" stroke-linejoin="round"/><circle cx="82" cy="26" r="11" fill="#7b3fd1" stroke="#3a1670" stroke-width="2.5"/><circle cx="30" cy="28" r="9" fill="#5bb8ff" stroke="#d9a520" stroke-width="2.5"/>`}
+ <path d="M12 40 L108 40 L102 94 L18 94Z" fill="#6a3fc8" stroke="#2a1660" stroke-width="3" stroke-linejoin="round"/>
+ <path d="M14 40 L106 40 L104 54 L16 54Z" fill="#8f60e8"/>
+ <rect x="53" y="40" width="14" height="54" fill="#f6c945" stroke="#a8741a" stroke-width="1.5"/>
+ <path d="M18 92 L102 92" stroke="#f6c945" stroke-width="5"/>
+ ${open?'':`<path d="M8 42 L60 28 L112 42 L106 24 L60 12 L14 24Z" fill="#7b4ad6" stroke="#2a1660" stroke-width="3" stroke-linejoin="round"/><text x="36" y="84" font-size="30" font-weight="900" fill="#ffd34d" font-family="Georgia">?</text>`}
+</svg>`;}
+const ITEM_KEYS=['bolt','clock','bomb'];
+function openChest(size){const got={coin:size===2?50:20};for(let k=0;k<size;k++){const it=ITEM_KEYS[rnd(3)];got[it]=(got[it]||0)+1;}grant(got);return got;}
+function grant(got){for(const k in got){if(k==='coin')SAVE.coins+=got[k];else SAVE.inv[k]=(SAVE.inv[k]||0)+got[k];}save();}
+const rwIcon=k=>k==='coin'?COIN_SVG:ITEM_SVG[k];
+function rewardHTML(got){return Object.entries(got).map(([k,v])=>`<span class="rwi">${rwIcon(k)}<b>${v}</b></span>`).join('');}
+const POS=[[20,64],[42,27],[61,70],[82,32]];
+let selSt=0,selCh=0;
+function defaultStage(){for(let i=0;i<20;i++)if(!(SAVE.stars[i]>0))return i;return LAST;}
+selSt=defaultStage();selCh=STAGES[selSt].ch;
+const chDone=c=>c<5?[0,1,2,3].every(k=>SAVE.stars[c*4+k]>0):SAVE.bestS[LAST]>0;
 function buildMenu(){
- $('#mascots').innerHTML=HERO_SVG.join('');
- $('#path').innerHTML=STAGES.map((st,i)=>{
-  const locked=i>0&&i<5&&!(SAVE.stars[i-1]>0);
-  const s=i<5?[0,1,2].map(k=>k<(SAVE.stars[i]||0)?'★':'<span class="off">★</span>').join(''):'';
-  const next=!locked&&i<5&&!(SAVE.stars[i]>0);
-  return `<div class="node${locked?' locked':''}${next?' next':''}"><button data-i="${i}">${st.num}</button><div class="stars">${s}</div><div class="nm">${st.name}</div></div>`;}).join('');
- $('#path').querySelectorAll('button').forEach(b=>b.onclick=()=>{
-  if(b.parentElement.classList.contains('locked')){toast('ผ่านด่านก่อนหน้าเพื่อปลดล็อก');return;}
-  startStage(+b.dataset.i);});
- $('#bestTxt').textContent=SAVE.best?'🏆 สถิติโหมดไม่สิ้นสุด: '+SAVE.best.toLocaleString():'';
+ ensureDaily();
+ $('#wallet').innerHTML=`<span class="chipv">${COIN_SVG}${SAVE.coins.toLocaleString()}</span>`+ITEM_KEYS.map(k=>`<span class="chipv">${ITEM_SVG[k]}${SAVE.inv[k]||0}</span>`).join('');
+ const total=SAVE.stars.reduce((a,b)=>a+(b||0),0);
+ $('#starTotal').textContent=`★ ${total}/60`;
+ $('#chName').textContent=selCh<5?CHAPTERS[selCh].name:'ด่านสุดท้าย';
+ let h='';
+ if(selCh<5){
+  h+=`<div class="emb">${OBS_SVG[CHAPTERS[selCh].emb]}</div>`;
+  for(let k=0;k<4;k++){const i=selCh*4+k,st=STAGES[i],lock=!unlocked(i),done=SAVE.stars[i]>0,sel=i===selSt;
+   const stars=[0,1,2].map(n=>n<SAVE.stars[i]?'★':'<span class="off">★</span>').join('');
+   h+=`<button class="medal${lock?' locked':''}${sel?' sel':''}" data-i="${i}" style="left:${POS[k][0]}%;top:${POS[k][1]}%">
+    <span class="disc"></span><span class="chest">${chestSVG(SAVE.claimed[i])}</span><span class="cnt">${st.chest}</span>
+    ${done?`<span class="chk">${CHECK_SVG}</span>`:''}${lock?'<span class="lockt">ยังไม่ปลดล็อก 🔒</span>':''}
+    ${sel&&!lock?`<span class="tg">เป้าหมายด่านนี้: <b>${(SAVE.bestS[i]||0).toLocaleString()}</b>/${st.target.toLocaleString()}</span>`:''}
+    ${!lock?`<span class="st">${stars}</span>`:''}<span class="rib">ด่านที่ ${st.label}</span></button>`;}
+ }else{
+  const lock=!unlocked(LAST);
+  h+=`<div class="trophy">${[[33,2,34],[22,20,52],[0,42,52],[46,42,52]].map(([x,y,w],k)=>`<div class="tb" style="left:${x}%;top:${y}%;width:${w}%">${HERO_SVG[(k+2)%4]}</div>`).join('')}<div class="ped"></div></div>
+   <button class="medal final${lock?' locked':''} sel" data-i="${LAST}" style="left:62%;top:46%"><span class="disc"></span><span class="inf">∞</span>
+   ${lock?'<span class="lockt">ยังไม่ปลดล็อก 🔒<br>ผ่านด่านที่ 5-4 ก่อน</span>':`<span class="lockt">สถิติ ${SAVE.best.toLocaleString()}</span>`}<span class="rib">ด่านสุดท้าย</span></button>`;
+ }
+ $('#stageArea').innerHTML=h;
+ $('#stageArea').querySelectorAll('.medal').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;
+  if(!unlocked(i)){toast(i===LAST?'ผ่านด่านที่ 5-4 เพื่อปลดล็อกด่านสุดท้าย':'ผ่านด่านก่อนหน้าเพื่อปลดล็อก');return;}
+  if(selSt===i){startStage(i);return;}selSt=i;beep(700,.06);buildMenu();});
+ $('#chips').innerHTML=['I','II','III','IV','V','∞'].map((n,c)=>`${c?`<i class="${chDone(c-1)?'':'off'}"></i>`:''}<button class="chip${c===selCh?' on':''}${chDone(c)?' done':''}${unlocked(c<5?c*4:LAST)?'':' lock'}" data-c="${c}"><span>${n}</span></button>`).join('');
+ $('#chips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>setCh(+b.dataset.c));
+ $('#chPrev').disabled=selCh===0;$('#chNext').disabled=selCh===5;
+ $('#playBtn').textContent=unlocked(selSt)&&STAGES[selSt].ch===selCh?`เริ่มการท้าทาย ${STAGES[selSt].label}`:'เริ่มการท้าทาย';
+ $('#missDot').classList.toggle('on',missionsReady()>0);
+ $('#bestTxt').textContent=SAVE.best?'🏆 สถิติด่านสุดท้าย: '+SAVE.best.toLocaleString():'';
  $('#cutBtn').textContent=SAVE.cutins===false?'🎬 ฉากสกิล: ปิด':'🎬 ฉากสกิล: เปิด';
  $('#muteBtn').textContent=SAVE.muted?'🔇 เสียง: ปิด':'🔊 เสียง: เปิด';
 }
-function toMenu(){G=null;busy=false;['pauseM','resultM','introM'].forEach(m=>modal(m,false));buildMenu();show('menu');}
+function setCh(c){selCh=Math.max(0,Math.min(5,c));if(selCh===5)selSt=LAST;else{let i=selCh*4;for(let k=0;k<4;k++){const j=selCh*4+k;if(unlocked(j))i=j;if(unlocked(j)&&!(SAVE.stars[j]>0))break;}selSt=i;}beep(600,.05);buildMenu();}
+$('#chPrev').onclick=()=>setCh(selCh-1);$('#chNext').onclick=()=>setCh(selCh+1);
+$('#playBtn').onclick=()=>{if(STAGES[selSt].ch!==selCh||!unlocked(selSt)){toast(selCh===5?'ผ่านด่านที่ 5-4 เพื่อปลดล็อกด่านสุดท้าย':'ด่านนี้ยังไม่ปลดล็อก');return;}startStage(selSt);};
+/* ---- missions ---- */
+const DAILY=[
+ {id:'login',t:'ล็อกอิน',need:1,rw:{coin:20,bolt:1}},
+ {id:'play',t:'เล่นด่านใดก็ได้ 1 เกม',need:1,rw:{coin:30,bomb:1}},
+ {id:'skill',t:'ใช้สกิลฮีโร่ 5 ครั้ง',need:5,rw:{coin:30,clock:1}},
+ {id:'fever',t:'เข้าโหมด FEVER 1 ครั้ง',need:1,rw:{coin:40,bolt:1}}];
+const cleared=()=>SAVE.stars.filter(x=>x>0).length,starSum=()=>SAVE.stars.reduce((a,b)=>a+b,0);
+const SEASON=[
+ {id:'c5',t:'ผ่านด่าน 5 ด่าน',need:5,p:cleared,rw:{coin:100,bolt:2}},
+ {id:'c20',t:'ผ่านครบทั้ง 20 ด่าน',need:20,p:cleared,rw:{coin:300,clock:2}},
+ {id:'s30',t:'สะสมดาว 30 ดวง',need:30,p:starSum,rw:{coin:200,bomb:3}},
+ {id:'s60',t:'สะสมดาวครบ 60 ดวง',need:60,p:starSum,rw:{coin:500,bolt:3,clock:2}},
+ {id:'b3',t:'ปราบจอมมารเงา 3 ครั้ง',need:3,p:()=>SAVE.season.boss,rw:{coin:150,bolt:2,bomb:1}}];
+const SHOP=[{k:'bolt',price:60},{k:'clock',price:100},{k:'bomb',price:60}];
+let missTab='d';
+function mState(m,daily){const prog=daily?(SAVE.daily.prog[m.id]||0):m.p();const got=daily?SAVE.daily.got[m.id]:SAVE.season.got[m.id];return{prog:Math.min(prog,m.need),got,ready:!got&&prog>=m.need};}
+function missionsReady(){ensureDaily();return DAILY.filter(m=>mState(m,true).ready).length+SEASON.filter(m=>mState(m,false).ready).length;}
+function claim(m,daily){const s=mState(m,daily);if(!s.ready)return false;(daily?SAVE.daily.got:SAVE.season.got)[m.id]=true;grant(m.rw);return true;}
+function renderMiss(){
+ ensureDaily();document.querySelectorAll('#missTabs .tab').forEach(x=>x.classList.toggle('on',x.dataset.m===missTab));
+ let h='';
+ if(missTab==='x'){h=SHOP.map(x=>`<div class="miss"><div class="rw"><span class="rwi">${ITEM_SVG[x.k]}<b>1</b></span></div><div class="mt">${ITEMS[x.k].name}<small>${ITEMS[x.k].desc.replace(/<[^>]+>/g,'')}</small></div><button class="cb" data-buy="${x.k}" ${SAVE.coins<x.price?'disabled':''}>🪙 ${x.price}</button></div>`).join('');}
+ else{const list=missTab==='d'?DAILY:SEASON;h=list.map(m=>{const s=mState(m,missTab==='d');
+  return `<div class="miss"><div class="rw">${rewardHTML(m.rw)}</div><div class="mt">${m.t} (${s.prog}/${m.need})</div><button class="cb" data-id="${m.id}" ${s.ready?'':'disabled'}>${s.got?'รับแล้ว':'รับ'}</button></div>`;}).join('');}
+ $('#missList').innerHTML=h;
+ $('#invRow').innerHTML=`<span class="chipv" style="color:#fff">${COIN_SVG}${SAVE.coins}</span>`+ITEM_KEYS.map(k=>`<span class="chipv" style="color:#fff">${ITEM_SVG[k]}${SAVE.inv[k]}</span>`).join('');
+ $('#claimAll').style.display=missTab==='x'?'none':'';
+ $('#missList').querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const list=missTab==='d'?DAILY:SEASON;const m=list.find(x=>x.id===b.dataset.id);if(claim(m,missTab==='d')){beep(900,.15,'triangle');confetti(30);renderMiss();buildMenu();}});
+ $('#missList').querySelectorAll('[data-buy]').forEach(b=>b.onclick=()=>{const x=SHOP.find(q=>q.k===b.dataset.buy);if(SAVE.coins<x.price)return;SAVE.coins-=x.price;SAVE.inv[x.k]++;save();beep(900,.1,'triangle');toast('ได้รับ '+ITEMS[x.k].name+' 1 ชิ้น');renderMiss();buildMenu();});
+}
+$('#missBtn').onclick=()=>{missTab='d';renderMiss();modal('missM',true);};
+$('#closeMiss').onclick=()=>modal('missM',false);
+document.querySelectorAll('#missTabs .tab').forEach(t=>t.onclick=()=>{missTab=t.dataset.m;renderMiss();});
+$('#claimAll').onclick=()=>{let n=0;const d=missTab==='d';(d?DAILY:SEASON).forEach(m=>{if(claim(m,d))n++;});if(n){beep(900,.2,'triangle');confetti(60);toast(`รับรางวัล ${n} ภารกิจ`);}else toast('ยังไม่มีรางวัลให้รับ');renderMiss();buildMenu();};
+function toMenu(){G=null;busy=false;['pauseM','resultM','introM'].forEach(m=>modal(m,false));selSt=defaultStage();selCh=STAGES[selSt].ch;buildMenu();show('menu');}
 $('#cutBtn').onclick=()=>{SAVE.cutins=SAVE.cutins===false;save();buildMenu();};
 $('#muteBtn').onclick=()=>{SAVE.muted=!SAVE.muted;save();buildMenu();};
 $('#backBtn').onclick=$('#pauseBtn').onclick=()=>{if(!G||G.ended)return;G.paused=true;modal('pauseM',true);};
@@ -899,23 +1111,24 @@ $('#restartBtn').onclick=()=>{modal('pauseM',false);startStage(stageIdx);};
 $('#quitBtn').onclick=toMenu;
 $('#menuBtn').onclick=toMenu;
 $('#againBtn').onclick=()=>{modal('resultM',false);startStage(stageIdx);};
-$('#nextBtn').onclick=()=>{modal('resultM',false);startStage(Math.min(stageIdx+1,5));};
+$('#nextBtn').onclick=()=>{modal('resultM',false);startStage(Math.min(stageIdx+1,LAST));};
 
 let helpWasPaused=false;
 function openHelp(){if(G&&G.running){helpWasPaused=G.paused;G.paused=true;}renderGuide('h');modal('helpM',true);}
 $('#helpBtn').onclick=$('#helpBtn2').onclick=openHelp;
 $('#closeHelp').onclick=()=>{modal('helpM',false);if(G&&G.running&&!$('#pauseM').classList.contains('on'))G.paused=helpWasPaused;};
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>renderGuide(t.dataset.t));
+document.querySelectorAll('#helpM .tab').forEach(t=>t.onclick=()=>renderGuide(t.dataset.t));
 function renderGuide(t){
- document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.t===t));
+ document.querySelectorAll('#helpM .tab').forEach(x=>x.classList.toggle('on',x.dataset.t===t));
  let h='';
- if(t==='h'){h+=`<div class="gi"><div><b>พื้นฐาน</b><p>ลากสลับลูกอมที่อยู่ติดกันให้เรียงชนิดเดียวกัน <em>3 ลูก</em> ขึ้นไปเพื่อทำลาย<br>เรียง <em>4 ลูก</em> (หรือรูปตัว L/T) = ได้ลูกอม <em>Lv.2</em> • เรียง <em>5 ลูก</em> = ได้ลูกอม <em>Lv.3</em><br>แตะลูกอม Lv.2/3 เพื่อใช้สกิล หรือลากสลับเพื่อเลือกทิศทาง • คอมโบต่อเนื่องได้คะแนนคูณเพิ่ม</p></div></div><div class="gi"><div><b>🌈 FEVER</b><p>ทำลายลูกอมจนเกจเต็ม เข้าโหมด FEVER <em>8 วิ</em>: คะแนน <em>x2</em> และลูกอมที่ตกลงมามีโอกาสเป็น Lv.2</p></div></div><div class="gi"><div><b>💥 สุดยอดคอมโบ</b><p>ลากสลับลูกอม Lv.2/3 สองลูกเข้าหากัน = ระเบิดกากบาทกว้าง 3 แถว<br>สลับ <em>Lv.3 + Lv.3</em> = <em>ล้างทั้งกระดาน!</em></p></div></div>`;
+ if(t==='h'){h+=`<div class="gi"><div><b>พื้นฐาน</b><p>ลากสลับลูกอมที่อยู่ติดกันให้เรียงชนิดเดียวกัน <em>3 ลูก</em> ขึ้นไปเพื่อทำลาย<br>เรียง <em>4 ลูก</em> (หรือรูปตัว L/T) = ได้ลูกอม <em>Lv.2</em> • เรียง <em>5 ลูก</em> = ได้ลูกอม <em>Lv.3</em><br>แตะลูกอม Lv.2/3 เพื่อใช้สกิล หรือลากสลับเพื่อเลือกทิศทาง • คอมโบต่อเนื่องได้คะแนนคูณเพิ่ม (สูงสุด x3)</p></div></div><div class="gi"><div><b>🧮 การคิดคะแนน</b><p>ลูกอม 100 (ลูกอมพิเศษ 200) • สร้าง Lv.2/Lv.3 ได้ 500/750 • ปราบสิ่งกีดขวางตามที่ระบุ<br>ทุกอย่างคูณด้วย <em>คอมโบ</em> (x1, x1.5, x2 … สูงสุด x3) และ <em>FEVER x2</em> เหมือนกันหมด • เวลาหยุดเดินระหว่างฉากสกิล • เวลาโบนัสรวมได้สูงสุด +20 วิ ต่อด่าน</p></div></div><div class="gi"><div><b>🌈 FEVER</b><p>ทำลายลูกอมจนเกจเต็ม เข้าโหมด FEVER <em>8 วิ</em>: คะแนน <em>x2</em> และลูกอมที่ตกลงมามีโอกาสเป็น Lv.2</p></div></div><div class="gi"><div><b>💥 สุดยอดคอมโบ</b><p>ลากสลับลูกอม Lv.2/3 สองลูกเข้าหากัน = ระเบิดกากบาทกว้าง 3 แถว<br>สลับ <em>Lv.3 + Lv.3</em> = <em>ล้างทั้งกระดาน!</em></p></div></div>`;
   HEROES.forEach((x,i)=>h+=`<div class="gi">${HERO_SVG[i]}<div><b>${x.name}</b> (${x.col})<p><b>Lv.2:</b> ${x.lv2}<br><b>Lv.3:</b> ${x.lv3}</p></div></div>`);}
  if(t==='o')Object.keys(OBS).forEach(k=>h+=`<div class="gi">${OBS_SVG[k]}<div><b>${OBS[k].name}</b><p>${OBS[k].desc}<br>กำจัดได้ <em>+${OBS[k].pts.toLocaleString()}</em> คะแนน</p></div></div>`);
  if(t==='i'){Object.keys(ITEMS).forEach(k=>h+=`<div class="gi">${ITEM_SVG[k]}<div><b>${ITEMS[k].name}</b><p>${ITEMS[k].desc} เมื่อใช้แล้วไม่สามารถยกเลิกได้</p></div></div>`);
-  h+=`<div class="gi"><div><p>ทุกด่านเริ่มด้วย สายฟ้า 3 • นาฬิกา 2 • ระเบิด 3 ชิ้น</p></div></div>`;}
+  h+=`<div class="gi"><div><p>ทุกด่านได้ไอเทมฟรีอย่างละ 1 ชิ้น ใช้หมดแล้วจะดึงจากกระเป๋า (ได้จากกล่องสมบัติ ภารกิจ และร้านแลกของ)</p></div></div>`;}
  $('#guide').innerHTML=h;
 }
+window.addEventListener('focus',()=>{if(!G){buildMenu();}});
 $('#bgfloat').innerHTML=Array.from({length:14},(_,k)=>{const sz=30+rnd(60);return HERO_SVG[k%4].replace('<svg ',`<svg style="left:${rnd(100)}%;width:${sz}px;height:${sz}px;animation-duration:${14+rnd(16)}s;animation-delay:-${rnd(30)}s" `);}).join('');
 $('#icBolt').innerHTML=ITEM_SVG.bolt;$('#icClock').innerHTML=ITEM_SVG.clock;$('#icBomb').innerHTML=ITEM_SVG.bomb;
 /* ================= LEADERBOARD (server or local) ================= */
@@ -942,15 +1155,17 @@ async function getBoard(st){
 const esc=t=>String(t).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 async function showLb(st){
  lbStage=st;
- $('#lbTabs').innerHTML=STAGES.map((x,i)=>`<button class="tab${i===st?' on':''}" data-s="${i}">${x.num}</button>`).join('');
- $('#lbTabs').querySelectorAll('.tab').forEach(b=>b.onclick=()=>showLb(+b.dataset.s));
+ const cur=STAGES[st];
+ $('#lbTabs').innerHTML=['I','II','III','IV','V','∞'].map((n,c)=>`<button class="tab${c===cur.ch?' on':''}" data-s="${c<5?c*4+(c===cur.ch?cur.sub:0):LAST}">${n}</button>`).join('');
+ $('#lbSub').innerHTML=cur.ch<5?[0,1,2,3].map(k=>`<button class="tab${k===cur.sub?' on':''}" data-s="${cur.ch*4+k}">${cur.ch+1}-${k+1}</button>`).join(''):'';
+ document.querySelectorAll('#lbTabs .tab,#lbSub .tab').forEach(b=>b.onclick=()=>showLb(+b.dataset.s));
  $('#lbMode').textContent=STAGES[st].name+(NET.online?' • คะแนนรวมทุกคนบนเซิร์ฟเวอร์':' • คะแนนในเครื่องนี้ (รันเซิร์ฟเวอร์เพื่อแข่งกับเพื่อน)');
  $('#lbBody').innerHTML='<tr><td colspan="4">กำลังโหลด…</td></tr>';
  const rows=await getBoard(st);const me=myName();
  $('#lbBody').innerHTML=rows.length?rows.map((e,i)=>`<tr class="${e.name===me?'me':''}"><td>${['🥇','🥈','🥉'][i]||i+1}</td><td>${esc(e.name)}</td><td>${Number(e.score).toLocaleString()}</td><td>${STAGES[st].endless?'':'★'.repeat(e.stars||0)}</td></tr>`).join(''):'<tr><td colspan="4">ยังไม่มีคะแนน มาเป็นคนแรกกัน!</td></tr>';
  modal('lbM',true);
 }
-$('#lbBtn').onclick=()=>showLb(lbStage);
+$('#lbBtn').onclick=()=>showLb(selSt);
 $('#resLbBtn').onclick=()=>showLb(lbStage);
 $('#closeLb').onclick=()=>modal('lbM',false);
 
