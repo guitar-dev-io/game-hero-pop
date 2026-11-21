@@ -404,6 +404,66 @@ button{font:inherit;cursor:pointer;border:0}
 .cutin.rt .ci-text{top:auto;bottom:16%}
 .toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);background:#000c;padding:8px 16px;border-radius:999px;font-size:14px;z-index:60;opacity:0;transition:opacity .25s;pointer-events:none}
 .toast.on{opacity:1}
+/* ===== original-style game layout ===== */
+#game.screen.on{display:grid}
+#game{grid-template-columns:minmax(0,1fr);grid-template-areas:"top" "hud" "center" "side";grid-template-rows:auto auto 1fr auto;padding:8px 12px 10px;gap:6px;align-items:center;justify-items:center;overflow:hidden}
+#game.land{grid-template-columns:minmax(170px,250px) minmax(0,1fr) 104px;grid-template-rows:auto minmax(0,1fr);grid-template-areas:"top center side" "hud center side";gap:4px 14px;align-items:stretch}
+#game>*:not(.flames):not(#arena){position:relative;z-index:1}
+#game>#arena,#game>.flames{position:fixed!important;grid-area:auto}
+#arena{z-index:0!important;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.gtop{grid-area:top;display:flex;align-items:center;gap:8px;width:100%;max-width:560px}
+.guidebtn{background:#2a1f6bcc;color:#fff;font-weight:800;font-size:14px;padding:7px 14px;border-radius:999px;box-shadow:inset 0 0 0 2px #ffffff44}
+#game.land .gtop .stagename{display:none}
+.gtop .stagename{font-size:13px;opacity:.85;text-align:right}
+.hud{grid-area:hud;display:flex;flex-direction:row-reverse;gap:8px;width:100%;max-width:560px;align-items:center}
+.hudinfo{flex:1;display:flex;flex-direction:column;gap:4px;min-width:0}
+#game.land .hud{flex-direction:column;align-items:stretch;max-width:none;justify-content:flex-start}
+#game.land .herostage{width:100%;height:auto;flex:1;min-height:90px;margin-top:4px}
+.herostage{width:84px;height:84px}
+.plates{display:flex;gap:10px}
+#game.land .plates{flex-direction:column;gap:2px}
+.plate{flex:1;text-align:center}
+.plate .bar{display:none}
+.plbl{font-weight:900;font-size:clamp(14px,3.6vw,19px);text-shadow:0 2px 0 #2a1d6a,0 0 8px #0006}
+.pval{position:relative;margin:2px auto 0;width:min(100%,190px);height:clamp(34px,6vh,44px);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:clamp(20px,5vw,28px);font-family:Georgia,serif;color:#ffe9a8;font-variant-numeric:tabular-nums;
+ background:linear-gradient(180deg,#8fa2ff,#4a5ae0 55%,#3946c0);clip-path:polygon(9% 0,91% 0,100% 50%,91% 100%,9% 100%,0 50%);text-shadow:0 2px 0 #1c2580}
+.pval::before{content:"";position:absolute;inset:4px 10px;clip-path:polygon(7% 0,93% 0,100% 50%,93% 100%,7% 100%,0 50%);box-shadow:inset 0 0 0 2px #c9d3ff66;pointer-events:none}
+.pval.time{color:#8dffd0}
+#timeTxt.low{color:#ff9a9a}
+.target{font-weight:900;font-size:clamp(14px,3.6vw,19px);text-align:center;text-shadow:0 2px 0 #2a1d6a,0 0 8px #0008;font-family:Georgia,"Noto Sans Thai",serif}
+#game.land .combo{margin-top:6px}
+.center{grid-area:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:0}
+.tray{display:flex;gap:10px;justify-content:center}
+.slot{width:clamp(78px,20vw,124px);max-width:none;flex:none;height:52px;background:#2c1a30;border-radius:8px;box-shadow:0 0 0 5px #f3dfb8,0 0 0 7px #a8865a,0 6px 12px #0008}
+.slot.next{box-shadow:0 0 0 5px #ffb3c0,0 0 0 7px #ff4d6a,0 0 16px #ff4d6a}
+.side{grid-area:side;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;width:100%}
+#game.land .side{flex-direction:column;justify-content:space-between;flex-wrap:nowrap;padding:12px 0 6px}
+.items{gap:14px}
+#game.land .items{flex-direction:column;gap:16px}
+.item{width:clamp(56px,15vw,68px);height:clamp(56px,15vw,68px);flex:none;max-width:none;border-radius:50%;padding:0;justify-content:center;
+ background:radial-gradient(circle at 40% 32%,#7d8eff,#3540b0 70%);box-shadow:0 0 0 3px #a9b8ff,0 0 0 6px #262a78,0 6px 12px #0009}
+#game.land .item{width:clamp(52px,15vh,70px);height:clamp(52px,15vh,70px)}
+.item svg{width:66%;height:66%}
+.item span:first-child{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.item .cnt{top:auto;bottom:-4px;right:-2px;background:none;box-shadow:none;font-size:20px;font-weight:900;color:#fff;text-shadow:0 2px 0 #000,0 0 5px #000}
+.item.on{box-shadow:0 0 0 3px #7dfcff,0 0 0 6px #1a6a7a,0 0 20px #7dfcff;background:radial-gradient(circle at 40% 32%,#9ff,#3aa0c0 70%)}
+.orb{width:clamp(56px,15vw,78px);height:clamp(56px,15vw,78px)}
+.side .hint{width:100%}
+#game.land .side .hint{display:none}
+/* board look: brown cells, cream frame */
+.frame{box-shadow:0 0 0 7px #f3dfb8,0 0 0 10px #a8865a,0 14px 28px #000a;border-radius:6px}
+.tile,.tile.alt{background:#3a221f;box-shadow:none}
+.tile::after{content:"";position:absolute;inset:5%;border-radius:14%;background:#5a3933;box-shadow:inset 0 2px 0 #ffffff10}
+#board.aim .frame{box-shadow:0 0 0 7px #7dfcff,0 0 0 10px #2b8a9a,0 0 26px #7dfcff}
+/* results: full-screen spotlight */
+#resultM{background:radial-gradient(ellipse at 50% 42%,#ab9bff 0%,#6a58e0 38%,#33248e 72%,#170e48 100%)}
+#resultM .sheet.res{background:none;box-shadow:none;width:min(900px,100%);max-height:none}
+#resultM .sheet.res h2{font-size:clamp(22px,5vw,32px);text-shadow:0 2px 0 #2a1d6a}
+.resbig #resScore{color:#fff1c2;-webkit-text-stroke:3px #9a6a32;paint-order:stroke fill;text-shadow:0 10px 18px #0007;font-size:clamp(56px,15vw,120px)}
+#resultM .btnrow{gap:14px}
+#resultM .btnrow .btn{border-radius:0;clip-path:polygon(6% 0,94% 0,100% 50%,94% 100%,6% 100%,0 50%);background:linear-gradient(180deg,#fffdf6,#eadbb8);color:#6b4a2a;box-shadow:none;padding:13px 38px;font-size:17px;font-weight:900}
+#resultM #nextBtn,#resultM #againBtn{color:#3f55d8}
+@media (max-height:500px){.resbig #resScore{font-size:22vh}}
 </style>
 </head>
 <body>
@@ -452,35 +512,63 @@ button{font:inherit;cursor:pointer;border:0}
 
 <!-- GAME -->
 <div id="game" class="screen">
+ <svg id="arena" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+ <defs>
+  <linearGradient id="arSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4b3477"/><stop offset=".55" stop-color="#9a7290"/><stop offset="1" stop-color="#5e4060"/></linearGradient>
+  <radialGradient id="arGlow" cx="50%" cy="42%" r="55%"><stop offset="0" stop-color="#ffd9b0" stop-opacity=".6"/><stop offset="1" stop-color="#ffd9b0" stop-opacity="0"/></radialGradient>
+  <linearGradient id="arStone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b8919c"/><stop offset="1" stop-color="#76566a"/></linearGradient>
+  <linearGradient id="arCurt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#22185a"/><stop offset=".5" stop-color="#3b2c86"/><stop offset="1" stop-color="#22185a"/></linearGradient>
+ </defs>
+ <rect width="1600" height="900" fill="url(#arSky)"/><rect width="1600" height="900" fill="url(#arGlow)"/>
+ <circle cx="800" cy="420" r="340" fill="none" stroke="url(#arStone)" stroke-width="74" opacity=".9"/>
+ <circle cx="800" cy="420" r="340" fill="none" stroke="#5a3f55" stroke-width="74" stroke-dasharray="5 110" opacity=".55"/>
+ <circle cx="800" cy="420" r="262" fill="none" stroke="#f0d2bc" stroke-width="6" opacity=".35"/>
+ <path d="M420 330 L470 300 L500 560 L440 580Z M1180 330 L1130 300 L1100 560 L1160 580Z" fill="#a07d8d" opacity=".75"/>
+ <path d="M0 500 L130 455 L270 485 L320 640 L350 900 L0 900Z M1600 500 L1470 455 L1330 485 L1280 640 L1250 900 L1600 900Z" fill="url(#arStone)"/>
+ <circle cx="215" cy="575" r="82" fill="none" stroke="#8a6676" stroke-width="36"/><circle cx="1385" cy="575" r="82" fill="none" stroke="#8a6676" stroke-width="36"/>
+ <path d="M120 470 L150 430 L190 470 M1480 470 L1450 430 L1410 470" stroke="#c9a6ae" stroke-width="10" fill="none"/>
+ <ellipse cx="800" cy="880" rx="780" ry="160" fill="#a3808e"/>
+ <ellipse cx="800" cy="880" rx="560" ry="110" fill="none" stroke="#caa8b0" stroke-width="5"/>
+ <ellipse cx="800" cy="880" rx="370" ry="72" fill="none" stroke="#caa8b0" stroke-width="4"/>
+ <path d="M60 860 q30 -60 60 0 q25 -45 50 0 M1440 860 q30 -60 60 0 q25 -45 50 0" fill="#7a5a5a"/>
+ <path d="M0 0 H130 Q95 330 150 900 H0Z M1600 0 H1470 Q1505 330 1450 900 H1600Z" fill="url(#arCurt)"/>
+ <path d="M0 0 H1600 V58 Q1500 128 1400 70 Q1300 140 1200 70 Q1100 140 1000 70 Q900 140 800 70 Q700 140 600 70 Q500 140 400 70 Q300 140 200 70 Q100 128 0 58Z" fill="url(#arCurt)"/>
+ <path d="M0 58 Q100 128 200 70 Q300 140 400 70 Q500 140 600 70 Q700 140 800 70 Q900 140 1000 70 Q1100 140 1200 70 Q1300 140 1400 70 Q1500 128 1600 58" fill="none" stroke="#d9b56a" stroke-width="6" opacity=".8"/>
+ <rect width="1600" height="900" fill="#1a0f3a" opacity=".22"/>
+</svg>
  <div class="flames"></div>
- <div class="panel" id="hud">
-  <div class="hudtop">
-   <button class="iconbtn" id="backBtn" title="กลับ">⟵</button>
-   <div class="stagename" id="stageName">ด่าน 1</div>
-   <button class="iconbtn" id="pauseBtn" title="หยุด">❚❚</button>
-   <button class="iconbtn" id="helpBtn2" title="คู่มือ">?</button>
-  </div>
-  <div class="row2">
-   <div class="card"><div class="lbl" id="scoreLbl">คะแนน / เป้าหมาย</div><div class="big" id="scoreTxt">0</div><div class="bar" id="scoreBar"><i></i></div></div>
-   <div class="card"><div class="lbl">เวลา</div><div class="big" id="timeTxt">60.0</div><div class="bar" id="timeBar"><i></i></div></div>
-  </div>
-  <div class="herorow">
-   <div class="herostage" id="heroStage"></div>
+ <div class="gtop">
+  <button class="iconbtn" id="backBtn" title="กลับ">⟵</button>
+  <button class="guidebtn" id="helpBtn2">📖 คู่มือการเล่น</button>
+  <div class="stagename" id="stageName"></div>
+  <button class="iconbtn" id="pauseBtn" title="หยุด">❚❚</button>
+ </div>
+ <div class="hud" id="hud">
+  <div class="hudinfo">
+   <div class="plates">
+    <div class="plate"><div class="plbl">เวลา</div><div class="pval time" id="timeTxt">60</div><div class="bar" id="timeBar"><i></i></div></div>
+    <div class="plate"><div class="plbl" id="scoreLbl">คะแนน</div><div class="pval" id="scoreTxt">0</div><div class="bar" id="scoreBar"><i></i></div></div>
+   </div>
+   <div class="target" id="targetTxt">เป้าหมาย: 0</div>
    <div class="combo">
     <div class="comboline"><span class="cl">คอมโบ</span><span class="cn">× <b id="comboTxt">0</b></span><i class="cring" id="comboRing"></i></div>
     <div class="fevercard"><div class="lbl" id="feverLbl">⚡ เกจ FEVER</div><div class="bar" id="feverBar"><i></i></div></div>
    </div>
+   <div class="powers" id="powers"></div>
   </div>
-  <div class="powers" id="powers"></div>
+  <div class="herostage" id="heroStage"></div>
  </div>
- <div id="boardWrap"><div id="board"></div><div id="fx"></div></div>
- <div class="panel">
-  <div class="trayrow"><div class="tray" id="tray"></div><div class="orb" id="orb"><div class="orbfill" id="orbFill"></div><div class="orbic" id="orbIc"></div></div></div>
+ <div class="center">
+  <div id="boardWrap"><div id="board"></div><div id="fx"></div></div>
+  <div class="tray" id="tray"></div>
+ </div>
+ <div class="side">
   <div class="items" id="items">
-   <button class="item" data-item="bolt"><span id="icBolt"></span><span>สายฟ้า<br>เสริมพลัง</span><span class="cnt" id="cBolt">3</span></button>
-   <button class="item" data-item="clock"><span id="icClock"></span><span>นาฬิกา<br>ล้างสี</span><span class="cnt" id="cClock">2</span></button>
-   <button class="item" data-item="bomb"><span id="icBomb"></span><span>ระเบิด<br>พลังงาน</span><span class="cnt" id="cBomb">3</span></button>
+   <button class="item" data-item="bolt" title="สายฟ้าเสริมพลัง"><span id="icBolt"></span><span class="cnt" id="cBolt">1</span></button>
+   <button class="item" data-item="clock" title="นาฬิกาล้างสี"><span id="icClock"></span><span class="cnt" id="cClock">1</span></button>
+   <button class="item" data-item="bomb" title="ระเบิดพลังงาน"><span id="icBomb"></span><span class="cnt" id="cBomb">1</span></button>
   </div>
+  <div class="orb" id="orb"><div class="orbfill" id="orbFill"></div><div class="orbic" id="orbIc"></div></div>
   <div class="hint" id="hint">ลากเพื่อสลับ • แตะลูกอม Lv.2/3 เพื่อใช้สกิล</div>
  </div>
 </div>
@@ -532,7 +620,7 @@ button{font:inherit;cursor:pointer;border:0}
 <script>
 (()=>{
 "use strict";
-const W=8,H=8;
+let W=8,H=7;
 const $=s=>document.querySelector(s);
 const boardEl=$('#board'), fxEl=$('#fx'), gameEl=$('#game');
 const idx=(r,c)=>r*W+c, rc=i=>[Math.floor(i/W),i%W];
@@ -606,39 +694,32 @@ const CHAPTERS=[
  {num:'V',name:'บทที่ 5 • ศึกสุดท้าย',emb:'boss',obs:k=>({ember:1,lizard:1}),
   waves:k=>[{at:6,msg:'⚠️ จอมมารเงาปรากฏตัว!',boss:true,m:{boss:1}},{at:28,msg:'กองทัพโกเลมบุก!',m:{frost:1,ember:k>=2?1:0,lizard:1}},{at:46,msg:'ระลอกสุดท้าย!',m:{lizard:1+(k>>1),rock:2+k}}]}
 ];
-const SHAPES={
- full:Array(8).fill('oooooooo'),
- narrow:Array(8).fill('.oooooo.'),
- diamond:['...oo...','..oooo..','.oooooo.','oooooooo','oooooooo','.oooooo.','..oooo..','...oo...'],
- cross:['..oooo..','..oooo..','oooooooo','oooooooo','oooooooo','oooooooo','..oooo..','..oooo..']};
-const E8='........';
-const OVERLAYS={
- narrowGrass:[E8,E8,E8,E8,E8,'.GGGGGG.','..GGGGG.','...GGGG.'],
- fullGrass:[E8,E8,E8,E8,E8,'..GGGG..','GGGGGGGG','GGGGGGGG'],
- diamondCore:[E8,E8,E8,'..CCCC..','..CCCC..',E8,E8,E8],
- crossCrates:[E8,E8,E8,'...CC...','...CC...',E8,E8,E8],
- fullCrates:[E8,E8,'.C....C.',E8,E8,'.C....C.',E8,E8],
- bonus:[E8,'...CC...','..CCCC..','.CCCCCC.','.CCCCCC.','..CCCC..','...CC...',E8]};
-const LAYOUT=[
- [['full'],['narrow','narrowGrass'],['diamond','diamondCore'],['full','fullGrass']],
- [['full','fullCrates'],['cross','crossCrates'],['narrow','narrowGrass'],['diamond','diamondCore']],
- [['full'],['diamond'],['cross','crossCrates'],['full','fullGrass']],
- [['full'],['cross'],['diamond'],['full','fullCrates']],
- [['full','fullGrass'],['diamond'],['cross','crossCrates'],['full']]];
-let MASK=SHAPES.full.map(r=>[...r].map(()=>true));
+const MAPS={
+ full:Array(7).fill('oooooooo'),
+ fullGrass:['oooooooo','oooooooo','oooooooo','oooooooo','ooGGGGoo','GGGGGGGG','GGGGGGGG'],
+ fullCrates:['oooooooo','oCooooCo','oooooooo','oooooooo','oooooooo','oCooooCo','oooooooo'],
+ narrow:Array(8).fill('oooooo'),
+ narrowGrass:['oooooo','oooooo','oooooo','oooooo','GGGGGG','.GGGGG','..GGGG','...GGG'],
+ diamond:['....o....','...ooo...','..ooooo..','.ooooooo.','ooooooooo','.ooooooo.','..ooooo..','...ooo...','....o....'],
+ diamondCore:['....o....','...ooo...','..ooooo..','.ooCCCoo.','ooCCCCCoo','.ooCCCoo.','..ooooo..','...ooo...','....o....'],
+ cross:['..oooo..','oooooooo','oooooooo','oooooooo','oooooooo','oooooooo','..oooo..'],
+ crossCrates:['..oooo..','oooooooo','oooooooo','oooCCooo','oooooooo','oooooooo','..oooo..'],
+ bonus:['....o....','...oCo...','..oCCCo..','.oCCCCCo.','oCCCCCCCo','.oCCCCCo.','..oCCCo..','...oCo...','....o....']};
+const LAYOUT=[['full','narrowGrass','diamondCore','fullGrass'],['fullCrates','crossCrates','narrowGrass','diamondCore'],['full','diamond','crossCrates','fullGrass'],['full','cross','diamond','fullCrates'],['fullGrass','diamond','crossCrates','full']];
+let MASK=MAPS.full.map(r=>[...r].map(()=>true));
 const on=(r,c)=>inB(r,c)&&MASK[r][c];
 const isWall=p=>!!p&&p.kind==='obs'&&!!OBS[p.type].static;
 const cellsOf=p=>{const o=[];for(let dr=0;dr<(p.size||1);dr++)for(let dc=0;dc<(p.size||1);dc++)o.push([p.r+dr,p.c+dc]);return o;};
 const ctr=p=>[p.r+((p.size||1)-1)/2,p.c+((p.size||1)-1)/2];
-const TARGETS=[[70000,18000,30000,70000],[65000,50000,35000,38000],[55000,45000,50000,55000],[110000,55000,55000,110000],[95000,75000,90000,120000]];
+const TARGETS=[[65000,18000,25000,70000],[40000,45000,42000,35000],[60000,38000,65000,65000],[65000,60000,50000,95000],[100000,60000,85000,110000]];
 const STAGES=[];
 CHAPTERS.forEach((ch,ci)=>{for(let k=0;k<4;k++){const o=ch.obs(k);for(const t in o)if(!o[t])delete o[t];
  const wv=ch.waves(k).map(w=>{for(const t in w.m)if(!w.m[t])delete w.m[t];return w;});
- STAGES.push({ch:ci,sub:k,num:ch.num,label:`${ci+1}-${k+1}`,name:`ด่านที่ ${ci+1}-${k+1}`,target:TARGETS[ci][k],time:ci>=3?90:60,shape:LAYOUT[ci][k][0],over:LAYOUT[ci][k][1],obs:o,waves:wv,chest:k===3?2:1});}});
+ STAGES.push({ch:ci,sub:k,num:ch.num,label:`${ci+1}-${k+1}`,name:`ด่านที่ ${ci+1}-${k+1}`,target:TARGETS[ci][k],time:ci>=3?90:60,shape:LAYOUT[ci][k],obs:o,waves:wv,chest:k===3?2:1});}});
 STAGES.push({ch:5,sub:0,num:'∞',label:'∞',name:'ด่านสุดท้าย • ไม่สิ้นสุด',target:0,time:90,obs:{rock:2},endless:true,chest:2});
 const LAST=STAGES.length-1;
 const BONUS0=STAGES.length; // 21..25 = ด่านโบนัสของบท 1-5
-CHAPTERS.forEach((ch,ci)=>STAGES.push({ch:ci,sub:4,num:ch.num,label:`${ci+1}-★`,name:`ด่านโบนัส บทที่ ${ci+1}`,target:18000+ci*3000,time:10,obs:{},waves:[],shape:'diamond',over:'bonus',bonus:true,chest:1}));
+CHAPTERS.forEach((ch,ci)=>STAGES.push({ch:ci,sub:4,num:ch.num,label:`${ci+1}-★`,name:`ด่านโบนัส บทที่ ${ci+1}`,target:18000+ci*3000,time:10,obs:{},waves:[],shape:'bonus',bonus:true,chest:1}));
 const NST=STAGES.length;
 const unlocked=i=>STAGES[i].bonus?chDone(STAGES[i].ch):(i===0||(SAVE.stars[i-1]||0)>0);
 const starOf=i=>STAGES[i].bonus?(SAVE.bStars[STAGES[i].ch]||0):(SAVE.stars[i]||0);
@@ -974,14 +1055,14 @@ const itemCount=k=>G.items[k]+(SAVE.inv[k]||0);
 function useItem(k){if(G.items[k]>0)G.items[k]--;else{SAVE.inv[k]=Math.max(0,SAVE.inv[k]-1);save();}}
 function startFever(){G.fever=8;G.stats.fevers++;banner('FEVER!! x2','huge fever');flash('#ffd6ff');confetti(60);beep(523,.1,'square',.04);setTimeout(()=>beep(659,.1,'square',.04),100);setTimeout(()=>beep(784,.2,'square',.04),200);}
 setInterval(()=>{if(!G)return;if(G.shown!==G.score){const d=G.score-G.shown;G.shown+=Math.sign(d)*Math.max(1,Math.ceil(Math.abs(d)*.18));
- const st=G.stage;$('#scoreTxt').textContent=st.endless?G.shown.toLocaleString():`${G.shown.toLocaleString()} / ${st.target.toLocaleString()}`;if(d>300)bump($('#scoreTxt'));}},40);
+ $('#scoreTxt').textContent=G.shown.toLocaleString();if(d>300)bump($('#scoreTxt'));}},40);
 const TIME_CAP=20; // เวลาโบนัสรวมสูงสุดต่อเกม (โหมดไม่สิ้นสุด 60)
 function addTime(s){const cap=G.stage.endless?60:G.stage.bonus?10:TIME_CAP;s=Math.min(s,cap-G.stats.timeAdd);if(s<=0){return;}G.stats.timeAdd+=s;G.time+=s;updateHUD();}
 function updateHUD(){
  if(!G)return;
  const st=G.stage;
  $('#scoreBar i').style.width=(st.endless?Math.min(100,G.score/Math.max(1,SAVE.best||20000)*100):Math.min(100,G.score/st.target*100))+'%';
- $('#timeTxt').textContent=Math.max(0,G.time).toFixed(1);
+ $('#timeTxt').textContent=Math.ceil(Math.max(0,G.time));
  $('#timeBar i').style.width=Math.min(100,G.time/G.timeMax*100)+'%';
  $('#timeBar').classList.toggle('low',G.time<10);$('#timeTxt').classList.toggle('low',G.time<10&&G.running);
  $('#feverBar i').style.width=(G.fever>0?G.fever/8*100:G.fg)+'%';$('#feverLbl').textContent=G.fever>0?`🌈 FEVER x2 • ${G.fever.toFixed(1)} วิ`:'⚡ เกจ FEVER';
@@ -1012,16 +1093,16 @@ function freeAreas(sz,heroOk,t){const out=[];
 function placeObs(t,r,c){const o=newObs(t);o.r=r;o.c=c;cellsOf(o).forEach(([a,b])=>grid[a][b]=o);return o;}
 function buildBoard(stage){
  boardEl.innerHTML='';fxEl.innerHTML='';
- const shape=SHAPES[stage.shape||'full'],over=stage.over?OVERLAYS[stage.over]:null;
- MASK=shape.map(row=>[...row].map(ch=>ch!=='.'));
+ const map=MAPS[stage.shape||'full'];H=map.length;W=map[0].length;
+ MASK=map.map(row=>[...row].map(ch=>ch!=='.'));
  grid=Array.from({length:H},()=>Array(W).fill(null));
- drawTiles();
- if(over)for(let r=0;r<H;r++)for(let c=0;c<W;c++){const ch=over[r][c];if(on(r,c)&&(ch==='C'||ch==='G'))placeObs(ch==='C'?'crate':'grass',r,c);}
+ layout();
+ for(let r=0;r<H;r++)for(let c=0;c<W;c++){const ch=map[r][c];if(ch==='C'||ch==='G')placeObs(ch==='C'?'crate':'grass',r,c);}
  for(const[t,n]of Object.entries(stage.obs))for(let k=0;k<n;k++){const a=freeAreas(OBS[t].size||1,false,t).filter(([r])=>r>0||t==='rock');if(!a.length)continue;const[r,c]=a[rnd(a.length)];placeObs(t,r,c);}
  let ok=false,tries=0;
  while(!ok&&tries<100){tries++;
   for(let r=0;r<H;r++)for(let c=0;c<W;c++){if(!on(r,c)||(grid[r][c]&&grid[r][c].kind==='obs'))continue;
-   if(stage.bonus){const h=newHero(2,(r+c)%2?2:1);h.r=r;h.c=c;grid[r][c]=h;continue;}
+   if(stage.bonus){const h=newHero(2,r%2?1:2);h.r=r;h.c=c;grid[r][c]=h;continue;}
    let t,g=0;do{t=rnd(4);g++;}while(g<20&&((sameAt(r,c-1,t)&&sameAt(r,c-2,t))||(sameAt(r-1,c,t)&&sameAt(r-2,c,t))));const h=newHero(t);h.r=r;h.c=c;grid[r][c]=h;}
   ok=!findGroups().length&&hasMoves();}
  const seen=new Set();
@@ -1068,12 +1149,13 @@ function spawnRandomObstacle(){
 function layout(){
  const land=innerWidth>innerHeight*1.15;
  gameEl.classList.toggle('land',land);
- let size=land?Math.min(innerHeight-36,innerWidth-2*230-40):Math.min(innerWidth-30,innerHeight-360);
- size=Math.max(220,Math.min(size,620));
- S=Math.floor(size/W);
+ let aw,ah;
+ if(land){aw=innerWidth-Math.min(250,innerWidth*.27)-112-56;ah=innerHeight-24-72;}
+ else{aw=innerWidth-28;ah=innerHeight-(46+150+66+84+44);}
+ S=Math.floor(Math.max(26,Math.min(aw/W,ah/H,72)));
  document.documentElement.style.setProperty('--s',S+'px');
- boardEl.style.width=boardEl.style.height=S*W+'px';
- $('#boardWrap').style.width=$('#boardWrap').style.height=S*W+'px';
+ boardEl.style.width=S*W+'px';boardEl.style.height=S*H+'px';
+ $('#boardWrap').style.width=S*W+'px';$('#boardWrap').style.height=S*H+'px';
  for(const row of grid)for(const p of row)if(p&&p.el)setPosInstant(p,p.r,p.c);
  if(grid.length)drawTiles();
 }
@@ -1088,8 +1170,9 @@ function startStage(i){
  busy=false;
  show('game');layout();
  $('#stageName').textContent=st.name;
- $('#scoreTxt').textContent=st.endless?'0':`0 / ${st.target.toLocaleString()}`;
- $('#scoreLbl').textContent=st.endless?`คะแนน (สูงสุด ${SAVE.best.toLocaleString()})`:'คะแนน / เป้าหมาย';
+ $('#scoreTxt').textContent='0';
+ $('#scoreLbl').textContent=st.endless?`คะแนน (สูงสุด ${SAVE.best.toLocaleString()})`:'คะแนน';
+ $('#targetTxt').textContent=st.endless?`สถิติ: ${SAVE.best.toLocaleString()}`:`เป้าหมาย: ${st.target.toLocaleString()}`;
  buildBoard(st);trayKey='';gameEl.classList.remove('onfire');setHero(rnd(4),false);updateCombo(false);updateTray(true);updateHUD();
  $('#introTitle').textContent=st.name;
  const obsList=Object.keys(st.obs).length?Object.keys(st.obs).map(t=>`<div>${OBS_SVG[t]}<span>${OBS[t].name}</span></div>`).join(''):'<div>—</div>';
