@@ -248,6 +248,13 @@ button{font:inherit;cursor:pointer;border:0}
  .namebox input{width:130px;padding:4px 10px}
 }
 /* ---- board tiles ---- */
+.obs.gem svg{animation:gemShine 1.1s ease-in-out infinite alternate}
+@keyframes gemShine{from{filter:drop-shadow(0 0 2px #fff)}to{filter:drop-shadow(0 0 10px #9fe6ff) brightness(1.25);transform:translateY(-4%) scale(1.05)}}
+.medal.bonus{width:clamp(70px,19vw,104px)}
+@media (orientation:landscape) and (max-height:560px){.medal.bonus{width:clamp(60px,19vh,96px)}}
+.medal.bonus .disc{background:radial-gradient(circle at 40% 32%,#fff6cf,#ffb02e 55%,#c9620f 90%)}
+.medal.bonus .bstar{position:absolute;inset:12% 18% 30%;font-size:clamp(34px,9vw,52px);display:flex;align-items:center;justify-content:center;color:#fff;text-shadow:0 3px 0 #b9520f,0 0 14px #fff6}
+.medal.bonus .rib{background:linear-gradient(180deg,#ff8a5b,#d8431f);text-shadow:0 2px 0 #7a1c0a;font-size:clamp(11px,3vw,15px)}
 .frame,.tile{position:absolute;left:0;top:0;width:var(--s);height:var(--s);pointer-events:none}
 .frame{z-index:0;border-radius:8px;box-shadow:0 0 0 6px #f6d77a,0 0 0 9px #8a6a2a,0 12px 26px #0009}
 .tile{z-index:1;background:#3b2552;box-shadow:inset 0 0 0 1px #ffffff12}
@@ -550,6 +557,7 @@ const HERO_SVG=[
  svgWrap(body('gN')+`<path d="M26 28 L32 8 L41 20 L50 2 L59 20 L68 8 L74 28 Z" fill="#ffd34d" stroke="#b07b10" stroke-width="2" stroke-linejoin="round"/><circle cx="50" cy="16" r="3.6" fill="#ff4fa3"/><circle cx="34" cy="20" r="2.2" fill="#6ff"/><circle cx="66" cy="20" r="2.2" fill="#6ff"/>`+eyes()+`<path d="M42 74 Q52 78 60 70" stroke="#3a1670" stroke-width="3" fill="none" stroke-linecap="round"/>`)
 ];
 const OBS_SVG={
+ gem:svgWrap(`<ellipse cx="50" cy="90" rx="24" ry="4" fill="#0003"/><path d="M16 38 L32 16 H68 L84 38 L50 84Z" fill="#c9efff" stroke="#2f7fc8" stroke-width="3" stroke-linejoin="round"/><path d="M16 38 H84 M32 16 L41 38 L50 16 L59 38 L68 16 M41 38 L50 84 L59 38" stroke="#2f7fc8" stroke-width="2" fill="none"/><path d="M41 38 L50 16 L59 38Z" fill="#fff" opacity=".7"/><path d="M16 38 L41 38 L50 84Z" fill="#8fd3ff" opacity=".7"/>`),
  crate:svgWrap(`<rect x="4" y="4" width="92" height="92" rx="8" fill="#c8925a" stroke="#6b4320" stroke-width="5"/><rect x="15" y="15" width="70" height="70" fill="#a9733f"/><path d="M15 15 L85 85" stroke="#e3b47c" stroke-width="12"/><path d="M15 15 L85 85" stroke="#6b4320" stroke-width="2" opacity=".6"/><path d="M4 15 H96 M4 85 H96" stroke="#6b4320" stroke-width="3"/><path d="M10 8 H90" stroke="#f2cf9a" stroke-width="3" opacity=".7"/>`),
  grass:svgWrap(`<rect x="0" y="0" width="100" height="100" rx="10" fill="#2f8a3a"/><path d="M0 100 V70 Q8 40 12 70 Q16 30 22 72 Q28 20 34 70 Q40 38 46 72 Q52 18 58 70 Q64 36 70 72 Q76 22 82 70 Q88 40 94 70 Q97 50 100 66 V100Z" fill="#4cb84a"/><path d="M0 70 V40 Q6 12 12 42 Q18 4 26 44 Q32 10 40 42 Q48 2 56 42 Q62 14 70 44 Q78 6 86 42 Q92 16 100 40 V70Z" fill="#6fd66a" opacity=".9"/><path d="M0 40 V20 Q8 -4 16 24 Q24 -6 32 22 Q40 -8 50 22 Q58 -6 66 22 Q74 -4 84 22 Q92 0 100 20 V40Z" fill="#8ff08a" opacity=".85"/>`),
  rock:svgWrap(`<path d="M16 72 L20 38 L42 20 L70 24 L86 46 L82 76 L56 88 L28 86Z" fill="url(#gR)" stroke="#474c60" stroke-width="3" stroke-linejoin="round"/><path d="M42 38 L50 54 L44 68 M64 42 L58 58" stroke="#474c60" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="36" cy="34" rx="8" ry="4" fill="#fff" opacity=".35"/>`),
@@ -572,6 +580,7 @@ const HEROES=[
  {name:'นิกซ์',col:'ม่วง',lv2:'แตะ: ปล่อยโดรนดารา <em>2 ตัว</em> บินไปจุดสุ่ม ระเบิดทำลายจุดละ <em>5 ลูก</em>',lv3:'แตะ: ปล่อยโดรนดารา <em>3 ตัว</em> ระเบิดจุดละ <em>5 ลูก</em> (ครึ่งหนึ่งพุ่งใส่สิ่งกีดขวาง)'}
 ];
 const OBS={
+ gem:{name:'เพชร',hp:1,desc:'โผล่มากับลูกอมที่ตกลงมาเป็นครั้งคราว ทำลายลูกอมข้างๆ เพื่อเก็บ ได้ <em>คะแนน</em> และ <em>เหรียญ +3</em>',pts:1000},
  crate:{name:'ลังไม้',hp:1,static:true,desc:'อยู่กับที่ ลูกอมตกผ่านไม่ได้ ทำลายลูกอมข้างๆ <em>1 ครั้ง</em> เพื่อทุบลัง',pts:150},
  grass:{name:'พุ่มหญ้า',hp:1,static:true,desc:'ปกคลุมพื้นที่กระดาน ทำลายลูกอมข้างๆ เพื่อถางหญ้าและเปิดพื้นที่ใหม่',pts:100},
  rock:{name:'ก้อนหิน',hp:1,desc:'ทำลายลูกอมข้างๆ <em>1 ครั้ง</em> เพื่อทุบทิ้ง',pts:200},
@@ -608,7 +617,8 @@ const OVERLAYS={
  fullGrass:[E8,E8,E8,E8,E8,'..GGGG..','GGGGGGGG','GGGGGGGG'],
  diamondCore:[E8,E8,E8,'..CCCC..','..CCCC..',E8,E8,E8],
  crossCrates:[E8,E8,E8,'...CC...','...CC...',E8,E8,E8],
- fullCrates:[E8,E8,'.C....C.',E8,E8,'.C....C.',E8,E8]};
+ fullCrates:[E8,E8,'.C....C.',E8,E8,'.C....C.',E8,E8],
+ bonus:[E8,'...CC...','..CCCC..','.CCCCCC.','.CCCCCC.','..CCCC..','...CC...',E8]};
 const LAYOUT=[
  [['full'],['narrow','narrowGrass'],['diamond','diamondCore'],['full','fullGrass']],
  [['full','fullCrates'],['cross','crossCrates'],['narrow','narrowGrass'],['diamond','diamondCore']],
@@ -627,15 +637,19 @@ CHAPTERS.forEach((ch,ci)=>{for(let k=0;k<4;k++){const o=ch.obs(k);for(const t in
  STAGES.push({ch:ci,sub:k,num:ch.num,label:`${ci+1}-${k+1}`,name:`ด่านที่ ${ci+1}-${k+1}`,target:TARGETS[ci][k],time:ci>=3?90:60,shape:LAYOUT[ci][k][0],over:LAYOUT[ci][k][1],obs:o,waves:wv,chest:k===3?2:1});}});
 STAGES.push({ch:5,sub:0,num:'∞',label:'∞',name:'ด่านสุดท้าย • ไม่สิ้นสุด',target:0,time:90,obs:{rock:2},endless:true,chest:2});
 const LAST=STAGES.length-1;
-const unlocked=i=>i===0||(SAVE.stars[i-1]||0)>0;
+const BONUS0=STAGES.length; // 21..25 = ด่านโบนัสของบท 1-5
+CHAPTERS.forEach((ch,ci)=>STAGES.push({ch:ci,sub:4,num:ch.num,label:`${ci+1}-★`,name:`ด่านโบนัส บทที่ ${ci+1}`,target:18000+ci*3000,time:10,obs:{},waves:[],shape:'diamond',over:'bonus',bonus:true,chest:1}));
+const NST=STAGES.length;
+const unlocked=i=>STAGES[i].bonus?chDone(STAGES[i].ch):(i===0||(SAVE.stars[i-1]||0)>0);
+const starOf=i=>STAGES[i].bonus?(SAVE.bStars[STAGES[i].ch]||0):(SAVE.stars[i]||0);
 
 /* ================= SAVE / SOUND ================= */
 let SAVE={stars:[],best:0,muted:false};
 try{const s=JSON.parse(localStorage.getItem('heroPopSave')||'null'); if(s) SAVE=Object.assign(SAVE,s);}catch(e){}
 const save=()=>{try{localStorage.setItem('heroPopSave',JSON.stringify(SAVE));}catch(e){}};
 if(!Array.isArray(SAVE.stars)||SAVE.stars.length!==20)SAVE.stars=Array(20).fill(0);
-if(!Array.isArray(SAVE.bestS)||SAVE.bestS.length!==21)SAVE.bestS=Array(21).fill(0);
-if(!Array.isArray(SAVE.claimed)||SAVE.claimed.length!==21)SAVE.claimed=Array(21).fill(false);
+const pad=(a,n,v)=>{a=Array.isArray(a)?a:[];while(a.length<n)a.push(v);return a;};
+SAVE.bestS=pad(SAVE.bestS,26,0);SAVE.claimed=pad(SAVE.claimed,26,false);SAVE.maxC=pad(SAVE.maxC,26,0);SAVE.bStars=pad(SAVE.bStars,5,0);
 SAVE.inv=Object.assign({bolt:0,clock:0,bomb:0},SAVE.inv);SAVE.coins=SAVE.coins||0;
 SAVE.season=Object.assign({boss:0,got:{}},SAVE.season);
 function ensureDaily(){const d=new Date().toDateString();if(!SAVE.daily||SAVE.daily.date!==d)SAVE.daily={date:d,prog:{login:1,play:0,skill:0,fever:0},got:{}};}
@@ -857,7 +871,8 @@ function hitObs(p,h,angry,mult=1){
   if(p.type==='frost'){G.powers.frost=40;centerText('❄️ พลังปัญญา 40 วิ!');}
   if(p.type==='boss'){centerText('ปราบจอมมารเงาสำเร็จ!');G.bossKills++;}
   if(p.type==='lizard')cellText(p.r,p.c,'จับได้แล้ว!','gold');
-  if(G.stage.endless&&p.type!=='rock')addTime(p.type==='boss'?10:3);
+  if(p.type==='gem'){G.gems++;cellText(p.r,p.c+.6,'💎+3','gold');beep(1400,.15,'triangle',.05);}
+  if(G.stage.endless&&p.type!=='rock'&&p.type!=='gem'&&!OBS[p.type].static)addTime(p.type==='boss'?10:3);
   return;}
  render(p);flashClass(p,'hit',260);{const[x,y]=boardXY(...ctr(p));burst(x,y,['#fff','#ffcf6b'],4,2.5);}
  if(p.type==='boss'){while(p.hp<=p.nextSkill&&p.nextSkill>0){p.nextSkill-=10;angry.push(p);}}
@@ -885,7 +900,7 @@ async function gravity(){
    let w=r;
    for(let k=r;k>=a;k--){const p=grid[k][c];if(p){if(w!==k){grid[w][c]=p;grid[k][c]=null;const d=.1+.045*(w-k);maxD=Math.max(maxD,d);setPos(p,w,c,d);}w--;}}
    let open=true;for(let k=a-1;k>=0;k--)if(on(k,c)){open=false;break;}
-   if(open){const n=w-a+1;for(let k=w;k>=a;k--){const p=newHero(rnd(4),G&&G.fever>0&&Math.random()<.03?2:1);grid[k][c]=p;render(p);setPosInstant(p,k-n-1,c);const d=.1+.045*(n+1);maxD=Math.max(maxD,d);setPos(p,k,c,d);}}
+   if(open){const n=w-a+1;for(let k=w;k>=a;k--){const p=Math.random()<(G&&G.stage.bonus?.05:.012)?newObs('gem'):newHero(rnd(4),G&&G.fever>0&&Math.random()<.03?2:1);grid[k][c]=p;render(p);setPosInstant(p,k-n-1,c);const d=.1+.045*(n+1);maxD=Math.max(maxD,d);setPos(p,k,c,d);}}
    else for(let k=w;k>=a;k--){const p=newHero(rnd(4));grid[k][c]=p;render(p);setPosInstant(p,k,c);flashClass(p,'up',500);}
    r=a-1;}
  }
@@ -961,7 +976,7 @@ function startFever(){G.fever=8;G.stats.fevers++;banner('FEVER!! x2','huge fever
 setInterval(()=>{if(!G)return;if(G.shown!==G.score){const d=G.score-G.shown;G.shown+=Math.sign(d)*Math.max(1,Math.ceil(Math.abs(d)*.18));
  const st=G.stage;$('#scoreTxt').textContent=st.endless?G.shown.toLocaleString():`${G.shown.toLocaleString()} / ${st.target.toLocaleString()}`;if(d>300)bump($('#scoreTxt'));}},40);
 const TIME_CAP=20; // เวลาโบนัสรวมสูงสุดต่อเกม (โหมดไม่สิ้นสุด 60)
-function addTime(s){const cap=G.stage.endless?60:TIME_CAP;s=Math.min(s,cap-G.stats.timeAdd);if(s<=0){return;}G.stats.timeAdd+=s;G.time+=s;updateHUD();}
+function addTime(s){const cap=G.stage.endless?60:G.stage.bonus?10:TIME_CAP;s=Math.min(s,cap-G.stats.timeAdd);if(s<=0){return;}G.stats.timeAdd+=s;G.time+=s;updateHUD();}
 function updateHUD(){
  if(!G)return;
  const st=G.stage;
@@ -1006,6 +1021,7 @@ function buildBoard(stage){
  let ok=false,tries=0;
  while(!ok&&tries<100){tries++;
   for(let r=0;r<H;r++)for(let c=0;c<W;c++){if(!on(r,c)||(grid[r][c]&&grid[r][c].kind==='obs'))continue;
+   if(stage.bonus){const h=newHero(2,(r+c)%2?2:1);h.r=r;h.c=c;grid[r][c]=h;continue;}
    let t,g=0;do{t=rnd(4);g++;}while(g<20&&((sameAt(r,c-1,t)&&sameAt(r,c-2,t))||(sameAt(r-1,c,t)&&sameAt(r-2,c,t))));const h=newHero(t);h.r=r;h.c=c;grid[r][c]=h;}
   ok=!findGroups().length&&hasMoves();}
  const seen=new Set();
@@ -1068,7 +1084,7 @@ function modal(id,on){$('#'+id).classList.toggle('on',on);}
 
 function startStage(i){
  stageIdx=i;const st=STAGES[i];
- G={stage:st,score:0,time:st.time,timeMax:st.time,items:{bolt:1,clock:1,bomb:1},skills:0,bossKills:0,waveIdx:0,elapsed:0,powers:{ember:0,frost:0},chain:0,chainT:0,maxChain:0,lastHero:-1,fg:0,fever:0,stats:{maxC:0,fevers:0,timeAdd:0,blob:0,create:0,obs:0,combo:0,steps:0},shown:0,idle:0,hinted:false,lastSec:99,itemMode:null,running:false,paused:false,timeUp:false,ended:false,spawnT:0};
+ G={stage:st,score:0,time:st.time,timeMax:st.time,items:{bolt:1,clock:1,bomb:1},skills:0,bossKills:0,gems:0,waveIdx:0,elapsed:0,powers:{ember:0,frost:0},chain:0,chainT:0,maxChain:0,lastHero:-1,fg:0,fever:0,stats:{maxC:0,fevers:0,timeAdd:0,blob:0,create:0,obs:0,combo:0,steps:0},shown:0,idle:0,hinted:false,lastSec:99,itemMode:null,running:false,paused:false,timeUp:false,ended:false,spawnT:0};
  busy=false;
  show('game');layout();
  $('#stageName').textContent=st.name;
@@ -1077,10 +1093,10 @@ function startStage(i){
  buildBoard(st);trayKey='';gameEl.classList.remove('onfire');setHero(rnd(4),false);updateCombo(false);updateTray(true);updateHUD();
  $('#introTitle').textContent=st.name;
  const obsList=Object.keys(st.obs).length?Object.keys(st.obs).map(t=>`<div>${OBS_SVG[t]}<span>${OBS[t].name}</span></div>`).join(''):'<div>—</div>';
- $('#introBody').innerHTML=(st.endless?`<p>เล่นให้ได้คะแนนมากที่สุดใน ${st.time} วินาที<br>สิ่งกีดขวางจะโผล่มาเรื่อยๆ กำจัดเพื่อรับเวลาเพิ่ม!</p>`:
+ $('#introBody').innerHTML=(st.bonus?`<p style="font-size:16px">⭐ ด่านโบนัส! มีเวลาแค่ <b>10 วินาที</b><br>แตะลูกอมพิเศษให้ไวที่สุด โซลช่วยเพิ่มเวลา (สูงสุด +10 วิ) ทุบลังเพื่อเปิดกระดาน<br>เป้าหมาย <b style="color:#e8590c">${st.target.toLocaleString()}</b> คะแนน • มีเพชรโผล่บ่อยเป็นพิเศษ!</p>`:'')+(st.bonus?'':st.endless?`<p>เล่นให้ได้คะแนนมากที่สุดใน ${st.time} วินาที<br>สิ่งกีดขวางจะโผล่มาเรื่อยๆ กำจัดเพื่อรับเวลาเพิ่ม!</p>`:
   `<p style="font-size:18px">เป้าหมายด่านนี้: <b style="color:#e8590c">${st.target.toLocaleString()}</b> คะแนน</p><p style="font-size:13px">⭐ ${st.target.toLocaleString()} • ⭐⭐ ${(st.target*1.5).toLocaleString()} • ⭐⭐⭐ ${(st.target*2).toLocaleString()}</p>`)
   +`<div style="font-size:13px;margin-top:6px">สิ่งกีดขวางเริ่มต้น</div><div class="intro-obs">${obsList}</div>`
-  +(st.waves&&st.waves.length?`<div style="font-size:13px;margin-top:6px;color:#c0172f;font-weight:800">⚠️ ระวัง! มอนสเตอร์จะบุก ${st.waves.length} ระลอก</div><div class="intro-obs">${[...new Set(st.waves.flatMap(w=>Object.keys(w.m)))].map(t=>`<div>${OBS_SVG[t]}<span>${OBS[t].name}</span></div>`).join('')}</div>`:'');
+  +(st.bonus?'':'')+(st.waves&&st.waves.length?`<div style="font-size:13px;margin-top:6px;color:#c0172f;font-weight:800">⚠️ ระวัง! มอนสเตอร์จะบุก ${st.waves.length} ระลอก</div><div class="intro-obs">${[...new Set(st.waves.flatMap(w=>Object.keys(w.m)))].map(t=>`<div>${OBS_SVG[t]}<span>${OBS[t].name}</span></div>`).join('')}</div>`:'');
  modal('introM',true);
 }
 $('#goBtn').onclick=async()=>{modal('introM',false);const g=G;
@@ -1124,19 +1140,20 @@ function endGame(){
  if(st.endless){const nb=G.score>SAVE.best;if(nb)SAVE.best=G.score;save();
   $('#resTitle').textContent='ท้าทายสำเร็จ';$('#resStars').innerHTML='🏆';$('#resNote').textContent='คะแนนสูงสุด: '+SAVE.best.toLocaleString();$('#nextBtn').style.display='none';}
  else{stars=G.score>=st.target*2?3:G.score>=st.target*1.5?2:G.score>=st.target?1:0;
-  SAVE.stars[stageIdx]=Math.max(SAVE.stars[stageIdx]||0,stars);
+  if(st.bonus)SAVE.bStars[st.ch]=Math.max(SAVE.bStars[st.ch]||0,stars);else SAVE.stars[stageIdx]=Math.max(SAVE.stars[stageIdx]||0,stars);
   $('#resTitle').textContent=stars?'ท้าทายสำเร็จ':'ท้าทายไม่สำเร็จ';$('#againBtn').style.display=stars?'none':'';
   $('#resStars').innerHTML=[0,1,2].map(k=>k<stars?`<span style="animation-delay:${.7+k*.35}s">★</span>`:'<span class="off">★</span>').join('');
   for(let k=0;k<stars;k++)setTimeout(()=>beep(660+k*220,.15,'triangle',.06),1700+k*350);
   $('#resNote').textContent=stars?'':'ต้องการ '+st.target.toLocaleString()+' คะแนน ลองใหม่อีกครั้ง!';
-  $('#nextBtn').style.display=stars&&stageIdx<LAST?'':'none';}
- const prevBest=SAVE.bestS[stageIdx]||0;SAVE.maxC=SAVE.maxC||Array(21).fill(0);const prevC=SAVE.maxC[stageIdx]||0;
+  $('#nextBtn').style.display=stars&&stageIdx<LAST&&!st.bonus?'':'none';}
+ const prevBest=SAVE.bestS[stageIdx]||0;const prevC=SAVE.maxC[stageIdx]||0;
  $('#resNew').style.display=G.score>prevBest&&G.score>0?'':'none';$('#resComboNew').style.display=G.maxChain>prevC?'':'none';
  SAVE.maxC[stageIdx]=Math.max(prevC,G.maxChain);$('#resCombo').textContent=G.maxChain;
  {const el=$('#resScore'),tgt=G.score,t0=performance.now()+1300;el.textContent='0';const tick=()=>{const k=Math.min(1,Math.max(0,(performance.now()-t0)/1200));el.textContent=Math.round(tgt*(1-Math.pow(1-k,3))).toLocaleString();if(k<1)requestAnimationFrame(tick);};requestAnimationFrame(tick);}
  SAVE.bestS[stageIdx]=Math.max(prevBest,G.score);
  ensureDaily();SAVE.daily.prog.play++;SAVE.daily.prog.skill+=G.skills;SAVE.daily.prog.fever+=G.stats.fevers;SAVE.season.boss+=G.bossKills;
- const coins=Math.floor(G.score/2000)+stars*5;SAVE.coins+=coins;
+ const coins=Math.floor(G.score/2000)+stars*5+G.gems*3;SAVE.coins+=coins;
+ if(G.gems)$('#resNote').textContent+=` 💎 เก็บเพชรได้ ${G.gems} เม็ด`;
  let rw=`<span>+${coins}</span>${COIN_SVG.replace('<svg ','<svg width="22" height="22" ')}`;
  if((stars||st.endless)&&!SAVE.claimed[stageIdx]){SAVE.claimed[stageIdx]=true;const got=openChest(st.chest);
   rw=`<span class="rch">${chestSVG(true)}</span><span>ผ่านด่านแล้ว รับ</span>`+rewardHTML(got)+rw;}
@@ -1251,6 +1268,10 @@ function buildMenu(){
  let h='';
  if(selCh<5){
   h+=`<div class="emb">${OBS_SVG[CHAPTERS[selCh].emb]}</div>`;
+  {const i=BONUS0+selCh,lock=!unlocked(i),sel=i===selSt,bs=SAVE.bStars[selCh]||0;
+   h+=`<button class="medal bonus${lock?' locked':''}${sel?' sel':''}" data-i="${i}" style="left:88%;top:80%"><span class="disc"></span><span class="bstar">★</span>
+    ${lock?'<span class="lockt">ผ่านครบ 4 ด่าน 🔒</span>':`<span class="st">${[0,1,2].map(n=>n<bs?'★':'<span class="off">★</span>').join('')}</span>`}
+    ${sel&&!lock?`<span class="tg">เป้าหมาย: <b>${(SAVE.bestS[i]||0).toLocaleString()}</b>/${STAGES[i].target.toLocaleString()}</span>`:''}<span class="rib">ด่านโบนัส</span></button>`;}
   for(let k=0;k<4;k++){const i=selCh*4+k,st=STAGES[i],lock=!unlocked(i),done=SAVE.stars[i]>0,sel=i===selSt;
    const stars=[0,1,2].map(n=>n<SAVE.stars[i]?'★':'<span class="off">★</span>').join('');
    h+=`<button class="medal${lock?' locked':''}${sel?' sel':''}" data-i="${i}" style="left:${POS[k][0]}%;top:${POS[k][1]}%">
@@ -1266,12 +1287,12 @@ function buildMenu(){
  }
  $('#stageArea').innerHTML=h;
  $('#stageArea').querySelectorAll('.medal').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;
-  if(!unlocked(i)){toast(i===LAST?'ผ่านด่านที่ 5-4 เพื่อปลดล็อกด่านสุดท้าย':'ผ่านด่านก่อนหน้าเพื่อปลดล็อก');return;}
+  if(!unlocked(i)){toast(i===LAST?'ผ่านด่านที่ 5-4 เพื่อปลดล็อกด่านสุดท้าย':STAGES[i].bonus?'ผ่านครบทั้ง 4 ด่านของบทนี้เพื่อปลดล็อกด่านโบนัส':'ผ่านด่านก่อนหน้าเพื่อปลดล็อก');return;}
   if(selSt===i){startStage(i);return;}selSt=i;beep(700,.06);buildMenu();});
  $('#chips').innerHTML=['I','II','III','IV','V','∞'].map((n,c)=>`${c?`<i class="${chDone(c-1)?'':'off'}"></i>`:''}<button class="chip${c===selCh?' on':''}${chDone(c)?' done':''}${unlocked(c<5?c*4:LAST)?'':' lock'}" data-c="${c}"><span>${n}</span></button>`).join('');
  $('#chips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>setCh(+b.dataset.c));
  $('#chPrev').disabled=selCh===0;$('#chNext').disabled=selCh===5;
- $('#playBtn').textContent=unlocked(selSt)&&STAGES[selSt].ch===selCh?`เริ่มการท้าทาย ${STAGES[selSt].label}`:'เริ่มการท้าทาย';
+ $('#playBtn').textContent=unlocked(selSt)&&STAGES[selSt].ch===selCh?(STAGES[selSt].bonus?'เริ่มด่านโบนัส':`เริ่มการท้าทาย ${STAGES[selSt].label}`):'เริ่มการท้าทาย';
  $('#missDot').classList.toggle('on',missionsReady()>0);
  $('#bestTxt').textContent=SAVE.best?'🏆 สถิติด่านสุดท้าย: '+SAVE.best.toLocaleString():'';
  $('#cutBtn').textContent=SAVE.cutins===false?'🎬 ฉากสกิล: ปิด':'🎬 ฉากสกิล: เปิด';
@@ -1371,7 +1392,7 @@ async function showLb(st){
  lbStage=st;
  const cur=STAGES[st];
  $('#lbTabs').innerHTML=['I','II','III','IV','V','∞'].map((n,c)=>`<button class="tab${c===cur.ch?' on':''}" data-s="${c<5?c*4+(c===cur.ch?cur.sub:0):LAST}">${n}</button>`).join('');
- $('#lbSub').innerHTML=cur.ch<5?[0,1,2,3].map(k=>`<button class="tab${k===cur.sub?' on':''}" data-s="${cur.ch*4+k}">${cur.ch+1}-${k+1}</button>`).join(''):'';
+ $('#lbSub').innerHTML=cur.ch<5?[0,1,2,3].map(k=>`<button class="tab${k===cur.sub?' on':''}" data-s="${cur.ch*4+k}">${cur.ch+1}-${k+1}</button>`).join('')+`<button class="tab${cur.bonus?' on':''}" data-s="${BONUS0+cur.ch}">โบนัส</button>`:'';
  document.querySelectorAll('#lbTabs .tab,#lbSub .tab').forEach(b=>b.onclick=()=>showLb(+b.dataset.s));
  $('#lbMode').textContent=STAGES[st].name+(NET.online?' • คะแนนรวมทุกคนบนเซิร์ฟเวอร์':' • คะแนนในเครื่องนี้ (รันเซิร์ฟเวอร์เพื่อแข่งกับเพื่อน)');
  $('#lbBody').innerHTML='<tr><td colspan="4">กำลังโหลด…</td></tr>';

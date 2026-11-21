@@ -3,7 +3,7 @@
 const http = require('http'), fs = require('fs'), path = require('path'), os = require('os');
 const PORT = +process.env.PORT || 3000;
 const DATA = path.join(__dirname, 'scores.json');
-const STAGES = 21, KEEP = 100, TOP = 10;
+const STAGES = 26, KEEP = 100, TOP = 10;
 
 let db = {};
 try { db = JSON.parse(fs.readFileSync(DATA, 'utf8')); } catch (e) { db = {}; }

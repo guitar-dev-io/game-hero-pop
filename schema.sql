@@ -1,7 +1,7 @@
 -- ตารางคะแนนของฮีโร่ป๊อป! (Cloudflare D1)
 CREATE TABLE IF NOT EXISTS scores (
   id         INTEGER PRIMARY KEY AUTOINCREMENT,
-  stage      INTEGER NOT NULL,          -- 0-19 = ด่าน 1-1 ถึง 5-4, 20 = ด่านสุดท้าย (ไม่สิ้นสุด)
+  stage      INTEGER NOT NULL,          -- 0-19 = ด่าน 1-1 ถึง 5-4, 20 = ด่านสุดท้าย, 21-25 = ด่านโบนัสบท 1-5
   name       TEXT    NOT NULL,
   score      INTEGER NOT NULL,
   stars      INTEGER NOT NULL DEFAULT 0,
